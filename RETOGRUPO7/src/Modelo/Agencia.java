@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 public class Agencia {
 	private String id;
 	private String nombre;
@@ -7,6 +9,19 @@ public class Agencia {
 	private String color;
 	private int empleados;
 	private String tipoAgencia;
+	private ArrayList<Viajes> viaje;
+	
+	public Agencia(String id, String nombre, String logo, String color, int empleados, String tipoAgencia,
+			ArrayList<Viajes> viaje) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.logo = logo;
+		this.color = color;
+		this.empleados = empleados;
+		this.tipoAgencia = tipoAgencia;
+		this.viaje = viaje;
+	}
 
 	public String getId() {
 		return id;
