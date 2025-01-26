@@ -7,7 +7,14 @@ public class Agencia {
 	private String color;
 	private int empleados;
 	private String tipoAgencia;
+	private Viaje viaje;
 
+	public Viaje getviaje() {
+		return viaje;
+	}
+	public void setViaje (Viaje viaje) {
+		this.viaje = viaje;
+	}
 	public String getId() {
 		return id;
 	}
