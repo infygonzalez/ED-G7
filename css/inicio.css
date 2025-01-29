@@ -1,0 +1,251 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+/*MENU DE NAVEGACION*/
+header {
+    background-color: #ffffff;
+    text-align: center;
+    flex-wrap: wrap;
+    width: auto;
+}
+nav{
+    color: #a1715a;
+    padding: 10px;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    gap: 80px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #201d1b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    font-style: normal;
+    display: block;
+}
+nav ul li {
+    display: inline;
+    position: relative;
+}
+
+img{
+    margin: 20px;
+}
+
+nav img {
+    max-width: 150px;
+    height: auto;
+    padding: 10px;
+}
+
+
+/*FINAL DE MENU DE NAVEGACION*/
+
+/*IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+/*IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+.imageninicio {
+    background-image: url("../img/imageninicio2.png");
+    background-size: cover;
+    text-align: center;
+    padding: 240px;
+    color: white;
+  }
+  .imageninicio h1 {
+    font-size: 2.5em;
+    color: white;
+    font-family: serif;
+  }
+  section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+/*FIN DE IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+
+hr{
+     background-color: rgb(0, 0, 0);
+     height: 3px;
+     width: 20px;
+     display: inline-block;
+     margin-bottom: 15px;
+     margin-top: 15px;
+}
+
+/*ESTILO A LOS TIPOS DE LETRA*/
+p {
+    font-family: "Raleway", serif;
+    font-size: 16px;
+    font-style: normal;
+}
+h2{
+    margin-right: 90PX;
+    margin-left: 120px;
+    margin-top: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+h1{
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 30px;
+  }
+  
+
+
+/*FIN ESTILOS A LOS TIPOS DE LETRA*/
+
+
+
+
+
+/*MENU DESPLEGABLE*/
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000000;
+    min-width: 150px;
+}
+
+.submenu li {
+    display: block;
+}
+.submenu a {
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-family: "Raleway", serif;
+    font-size: 17px;
+    font-style: normal;
+    text-align: left;
+}
+.submenu li a:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+}
+
+/* Mostrar el submenú cuando se pasa el mouse */
+nav ul li:hover .submenu {
+    display: block;
+}
+
+
+
+
+/*nuestros servicios*/
+.nuestrosServicios{
+    margin-left: 38vh;
+    margin-right: 38vh;
+}
+.contenidoinicio{
+    margin: 0%;
+}
+
+.textoimagenes {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+}
+
+
+
+.botones {
+    border: none; 
+    color: rgb(0, 0, 0); 
+    padding: 50px 58px; 
+    cursor: pointer; 
+    border-radius: 5px; 
+    display: inline-block;
+    margin: 5px;
+  }
+  .btnviaje{
+    background-image: url('../img/viajes3.png');
+    background-size: cover;
+    background-position: center;
+    padding: 150px 150px;
+    cursor: pointer;
+    background-color: white;
+    margin-right: 60px;
+    border:none;
+    margin-right: 170px;
+}
+
+.btnservicios{
+    background-image: url('../img/servicios2.png');
+    background-size: cover;
+    background-position: center;
+    padding: 150px 150px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
+
+
+
+@media (max-width: 700px){
+    nav ul{
+        flex-direction: column;
+    }
+}
+
+
+/*FOOTER*/
+.footer {
+    padding: 40px 0;
+    background-color: black;
+    color: #ffffff;
+}
+
+.footer ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.footer li {
+    padding: 0 10px;
+}
+
+.footer a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    opacity: 0.8;
+    font-family: "Raleway", serif;
+    font-size: 20px;
+}
+
+.footer ul a:hover {
+    opacity: 1;
+}
+
+.footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.footer .licencias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+

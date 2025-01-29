@@ -1,0 +1,296 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+/*MENU DE NAVEGACION*/
+header {
+    background-color: #ffffff;
+    text-align: center;
+    flex-wrap: wrap;
+    width: auto;
+}
+nav{
+    color: #a1715a;
+    padding: 10px;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    gap: 80px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #201d1b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    font-style: normal;
+    display: block;
+}
+nav ul li {
+    display: inline;
+    position: relative;
+}
+
+img{
+    margin: 20px;
+}
+
+nav img {
+    max-width: 150px;
+    height: auto;
+    padding: 10px;
+}
+
+
+/*IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+.imageninicio {
+  background-image: url("../img/imageninicio2.png");
+  background-size: cover;
+  text-align: center;
+  padding: 240px;
+  color: white;
+}
+.imageninicio h1 {
+  font-size: 2.5em;
+  color: white;
+  font-family: serif;
+}
+section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*FIN DE IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+
+
+hr{
+    background-color: rgb(0, 0, 0);
+    height: 3px;
+    width: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+/*ESTILO A LOS TIPOS DE LETRA*/
+p {
+   font-family: "Raleway", serif;
+   font-size: 16px;
+   font-style: normal;
+}
+h2{
+   margin-right: 90PX;
+   margin-left: 120px;
+   margin-top: 20px;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+h1{
+   font-family: "Raleway", serif;
+   font-optical-sizing: auto;
+   font-style: normal;
+   font-size: 30px;
+ }
+ 
+
+/*FIN ESTILOS A LOS TIPOS DE LETRA*/
+
+/*MENU DESPLEGABLE*/
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000000;
+  min-width: 150px;
+}
+
+.submenu li {
+  display: block;
+}
+.submenu a {
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  font-family: "Raleway", serif;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+}
+.submenu li a:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+/* Mostrar el submenú cuando se pasa el mouse */
+nav ul li:hover .submenu {
+  display: block;
+}
+
+/*pagina de contacto*/
+.contact_form {
+  width: 460px;
+  height: auto;
+  margin: 80px auto;
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #fbfbfb;
+  padding-left: 30px;
+  box-shadow:  14px 14px 20px 14px rgba(20, 20, 20, 0.3);
+}
+
+input {
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 40px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+textarea {
+  background-color: #fbfbfb;
+  width: 405px;
+  height: 150px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+label {
+  display: block;
+  float: center;
+}
+
+button {
+  height: 45px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  background-color: #000000;
+  border-color: #000000;
+  border-style: solid;
+  border-radius: 10px;
+  width: 420px;
+  cursor: pointer;
+}
+
+button p {
+  color: #fff;
+}
+
+span {
+  color: #000000;
+}
+
+.aviso {
+  font-size: 13px;
+  color: #0e0e0e;
+}
+
+h1 {
+  font-size: 39px;
+  padding-bottom: 20px;
+  color: #000000;
+}
+
+h3 {
+  font-size: 16px;
+  padding-bottom: 30px;
+  color: #0e0e0e;
+}
+
+::-webkit-input-placeholder {
+  color: #a8a8a8;
+}
+
+::-webkit-textarea-placeholder {
+  color: #a8a8a8;
+}
+
+.formulario input:focus {
+  outline: 1;
+  border: 1px solid #d0ff00;
+}
+
+.formulario textarea:focus {
+  outline: 1;
+
+}
+
+
+
+
+/*FOOTER*/
+.footer {
+    padding: 40px 0;
+    background-color: black;
+    color: #ffffff;
+}
+
+.footer ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.footer li {
+    padding: 0 10px;
+}
+
+.footer a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    opacity: 0.8;
+    font-family: "Raleway", serif;
+    font-size: 20px;
+}
+
+.footer ul a:hover {
+    opacity: 1;
+}
+
+.footer .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.footer .licencias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de viajes</title>
+    <link rel="icon" type="image/png" href="../img/icono.png" sizes="48x48">
+    <link rel="stylesheet" href="../css/registroViajes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <form class="form-container">
+        <div class="logo">
+            <img src="../img/logo_grupo7.png">
+        </div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="tipoviaje">Tipo de viaje:</label>
+        <input list="tipos" id="viajes" name="viajes" placeholder="--Elige--" required>
+        <datalist id="tipos">
+            <option value="Novios"></option>
+            <option value="Senior"></option>
+            <option value="Grandes viajes (destinos exoticos)"></option>
+            <option value="Combinado (vuelo+hotel)"></option>
+            <option value="Escapadas"></option>
+            <option value="Familias con niños menores"></option>
+        </datalist>
+
+        <label for="fechainc">Fecha de Inicio:</label>
+        <input type="date" id="fechainc" name="fechainc" min="2025-01-01" required>
+
+        <label for="fechafin">Fecha de Fin:</label>
+        <input type="date" id="fechafin" name="fechafin" required> 
+
+        <label for="dias">Días</label>
+        <input type="numbre" id="dias" name="dias"> 
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let fechaincInput = document.getElementById("fechainc");
+                let fechafinInput = document.getElementById("fechafin");
+                let diasInput = document.getElementById("dias");
+    
+               fechaincInput.addEventListener("change", function () {
+                   
+                    fechafin.min = fechaincInput.value;
+                    
+                    // Si la fecha de fin ya está seleccionada y es menor, corregirla
+                    if (fechafinInput.value && fechafinInput.value < fechaincInput.value) {
+                        fechafinInput.value = fechaincInput.value;
+                    }
+                    calcularDias();
+                });
+    
+                fechafinInput.addEventListener("change", calcularDias);
+    
+                function calcularDias() {
+                    if (fechaincInput.value && fechafinInput.value) {
+                        let inc = new Date(fechaincInput.value);
+                        let fin = new Date(fechafinInput.value);
+                        let diferencia = (fin - inc) / (1000 * 60 * 60 * 24); // Convertir meses a días
+                        diasInput.value = diferencia >= 0 ? diferencia : 0;
+                    }
+                }
+            });
+        </script>
+
+        <label for="paises">Paises:</label>
+        <input list="listapaises" id="paises" name="paises" placeholder="--Elige--" required>
+        <datalist id="listapaises">
+            <option value="Alemania"></option>
+            <option value="Argentina"></option>
+            <option value="Austria"></option>
+            <option value="Bélgica"></option>
+            <option value="Brasil"></option>
+            <option value="Canada"></option>
+            <option value="Croacia"></option>
+            <option value="Republica Checa"></option>
+            <option value="Cuba"></option>
+            <option value="China"></option>
+            <option value="Chipre"></option>
+            <option value="Dinamarca"></option>
+            <option value="Egipto"></option>
+            <option value="Estados Unidos"></option>
+            <option value="Estonia"></option>
+            <option value="Finlandia"></option>
+            <option value="Francia"></option>
+            <option value="Grecia"></option>
+            <option value="Guatemala"></option>
+            <option value="Hong-Kong"></option>
+            <option value="Hungria"></option>
+            <option value="India"></option>
+            <option value="Indonesia"></option> 
+            <option value="Irlanda"></option>
+            <option value="Islandia"></option>
+            <option value="Italia"></option>
+            <option value="Jamaica"></option>
+            <option value="Japón"></option>
+            <option value="Kenia"></option>
+            <option value="Luxemburgo"></option>
+            <option value="Maldivas"></option>
+            <option value="Malta"></option>
+            <option value="Marruecos"></option>
+            <option value="Mexico"></option>
+            <option value="Mónaco"></option>
+            <option value="Noruega"></option>
+            <option value="Paises Bajos"></option>
+            <option value="Panamá"></option>
+            <option value="Perú"></option>
+            <option value="Polonia"></option>
+            <option value="Portugal"></option>
+            <option value="Puerto Rico"></option>
+            <option value="Qatar"></option>
+            <option value="Reino Unido"></option>
+            <option value="Rumania"></option>
+            <option value="Seychelles"></option>
+            <option value="Singapur"></option>
+            <option value="Sudáfrica"></option>
+            <option value="Suecia"></option>
+            <option value="Suiza"></option>
+            <option value="Tailandia"></option>
+            <option value="Tanzania (Incluye Zanzibar)"></option>
+            <option value="Túnez"></option>
+            <option value="Turquia"></option>
+            <option value="Venezuela"></option>
+            <option value="Vietnam"></option>
+        </datalist>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" placeholder="Max. 300 palabras" maxlength="300"></textarea>
+
+        <label for="servicios">Servicios que se quedan fuera:</label>
+        <textarea id="servicios" name="servicios" placeholder="Max. 300 palabras" maxlength="300"></textarea>
+
+        <button type="submit" id="enviar">ENVIAR DATOS</button>
+    </form>
+</body>
+</html>
