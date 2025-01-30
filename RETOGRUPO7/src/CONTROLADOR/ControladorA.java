@@ -19,6 +19,7 @@ public class ControladorA {
 	static String sql3 = SQLQuerys.SELECT_AGENCIA_COLOR_DE_MARCA;
 	static String sql4 = SQLQuerys.SELECT_AGENCIA_NUMERO_DE_EMPLEADOS;
 	static String sql5 = SQLQuerys.SELECT_AGENCIA_TIPO_DE_AGENCIA;
+	static String sql6 = SQLQuerys.INSERT_AGENCIA;
 	
 	
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
@@ -90,4 +91,9 @@ public static ArrayList<Agencia> obtenerAgenciaLogo(String logo) {
 	}
 	return agencias;
 	}
+public static void insertarAgencia(Agencia agencia) {
+	MySqlConnector a1 = new MySqlConnector();
+	a1.InsertarAgencia(agencia);
+	
+}
 }

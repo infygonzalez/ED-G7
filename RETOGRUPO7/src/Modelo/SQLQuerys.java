@@ -11,7 +11,7 @@ public class SQLQuerys {
 	public static final String SELECT_AGENCIA_TIPO_DE_AGENCIA = "select * from Agencia WHERE tipo_de_agencia = ?";
 	
 	//INSERTS
-	public static final String INSERT_ALUMNO = "insert into Alumnos values ('";
+	public static final String INSERT_AGENCIA = "insert into Agencia(nombre, logo, color_de_marca, numero_de_empleados, tipo_de_agencia, contraseña) values ('";
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";
 	

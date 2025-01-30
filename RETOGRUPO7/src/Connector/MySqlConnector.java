@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Modelo.Dbutils;
+import Modelo.*;
 
 public class MySqlConnector {
 	
@@ -39,5 +40,19 @@ public class MySqlConnector {
 		ResultSet r1  = statement.executeQuery();
 		
 		return r1;
+	}
+	public static void InsertarAgencia(Agencia agencia) {
+		Connection c2 = MySqlConnector.obtenerConexion();
+		Statement sentencia = null;
+		
+		try {
+			String sql = SQLQuerys.INSERT_AGENCIA + agencia.getNombre() +  SQLQuerys.SEPARATOR + agencia.getLogo() 
+			+ SQLQuerys.SEPARATOR + agencia.getColor() + SQLQuerys.SEPARATOR + agencia.getEmpleados() + SQLQuerys.SEPARATOR + agencia.getTipoAgencia() + SQLQuerys.SEPARATOR + agencia.getContraseña() + SQLQuerys.END_BLOCK;
+			sentencia = c2.createStatement();
+			sentencia.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
