@@ -38,7 +38,7 @@ public class Bienvenida extends JFrame {
 	 */
 	public Bienvenida() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 663, 461);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -51,8 +51,8 @@ public class Bienvenida extends JFrame {
 				CambiarLog();
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\in1dm3-a\\git\\repository3\\RETOGRUPO7\\imgs\\logo_sin_borde.png"));
-		btnNewButton.setBounds(0, 0, 434, 261);
+		btnNewButton.setIcon(new ImageIcon("imgs/logo_sin_borde.png"));
+		btnNewButton.setBounds(0, 0, 647, 422);
 		contentPane.add(btnNewButton);
 	}
 	public void CambiarLog() {

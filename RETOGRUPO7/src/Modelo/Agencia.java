@@ -10,6 +10,7 @@ public class Agencia {
 	private String color;
 	private String empleados;
 	private String tipoAgencia;
+	private String contraseña;
 	private ArrayList<Viaje> viaje;
 
 	public Agencia() {
@@ -17,7 +18,7 @@ public class Agencia {
 	}
 	
 	public Agencia(String id, String nombre, String logo, String color, String empleados, String tipoAgencia,
-			ArrayList<Viaje> viaje) {
+			ArrayList<Viaje> viaje, String contraseña) {
 		this.id = id;
 		this.nombre = nombre;
 		this.logo = logo;
@@ -25,9 +26,18 @@ public class Agencia {
 		this.empleados = empleados;
 		this.tipoAgencia = tipoAgencia;
 		this.viaje = viaje;
+		this.contraseña = contraseña;
 	}
 
 
+
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
 
 	public ArrayList<Viaje> getViaje() {
 		return viaje;
@@ -88,12 +98,12 @@ public class Agencia {
 	@Override
 	public String toString() {
 		return "Agencia [id=" + id + ", nombre=" + nombre + ", logo=" + logo + ", color=" + color + ", empleados="
-				+ empleados + ", tipoAgencia=" + tipoAgencia + ", viaje=" + viaje + ", empleados = "+ empleados + "]";
+				+ empleados + ", tipoAgencia=" + tipoAgencia + ", viaje=" + viaje + ", empleados = "+ empleados + ", contraseña ="+ contraseña +"]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, empleados, id, logo, nombre, tipoAgencia, viaje, empleados);
+		return Objects.hash(color, empleados, id, logo, nombre, tipoAgencia, viaje, empleados, contraseña);
 	}
 
 	@Override
@@ -107,7 +117,7 @@ public class Agencia {
 		Agencia other = (Agencia) obj;
 		return Objects.equals(color, other.color) && empleados == other.empleados && Objects.equals(id, other.id)
 				&& Objects.equals(logo, other.logo) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(tipoAgencia, other.tipoAgencia) && Objects.equals(viaje, other.viaje) && Objects.equals(empleados, other.empleados);
+				&& Objects.equals(tipoAgencia, other.tipoAgencia) && Objects.equals(viaje, other.viaje) && Objects.equals(empleados, other.empleados) && Objects.equals(contraseña, other.contraseña);
 	}
 
 

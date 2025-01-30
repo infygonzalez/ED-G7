@@ -15,13 +15,17 @@ import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
-    private JTextField textField;
-    private JPasswordField passwordField;
+    private JTextField textAgencia;
+    private JPasswordField textContraseña;
+    private String usu = "admingrupo7";
+    private String contra = "1234";
 
     /**
      * Launch the application.
@@ -55,7 +59,7 @@ public class Login extends JFrame {
         JPanel panellogin = new JPanel();
         panellogin.setBorder(null);
         panellogin.setBackground(new Color(128, 128, 128));
-        panellogin.setBounds(0, 127, 647, 193);
+        panellogin.setBounds(0, 118, 647, 193);
         contentPane.add(panellogin);
         panellogin.setLayout(null);
         
@@ -65,10 +69,10 @@ public class Login extends JFrame {
         lblNewLabel.setBounds(0, 11, 125, 63);
         panellogin.add(lblNewLabel);
         
-        textField = new JTextField();
-        textField.setBounds(129, 25, 109, 34);
-        panellogin.add(textField);
-        textField.setColumns(10);
+        textAgencia = new JTextField();
+        textAgencia.setBounds(129, 25, 109, 34);
+        panellogin.add(textAgencia);
+        textAgencia.setColumns(10);
         
         JLabel lblNewLabel_1 = new JLabel("Contraseña");
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -76,25 +80,49 @@ public class Login extends JFrame {
         lblNewLabel_1.setBounds(0, 92, 125, 57);
         panellogin.add(lblNewLabel_1);
         
-        passwordField = new JPasswordField();
-        passwordField.setBounds(129, 102, 109, 34);
-        panellogin.add(passwordField);
+        textContraseña = new JPasswordField();
+        textContraseña.setBounds(129, 102, 109, 34);
+        panellogin.add(textContraseña);
         
         JButton btnNewButton = new JButton("Iniciar sesión");
+        btnNewButton.addActionListener(new ActionListener() {
+        	
+        	public void actionPerformed(ActionEvent e) {
+        		String usuarioIntroducido = textAgencia.getText();
+        		String contraseñaIntroducida = new String (textContraseña.getPassword());
+        		if(usu.equals(usuarioIntroducido) && contra.equals(contraseñaIntroducida)) {
+        			cambiaraInicioSesion();
+        		} else {
+        			System.out.println("Las creedenciales no son correctas, vuelva a intentarlo de nuevo");
+        		}
+        	}
+        });
         btnNewButton.setBounds(429, 25, 125, 39);
         panellogin.add(btnNewButton);
         
         JButton btnNewButton_1 = new JButton("Nueva agencia");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		cambiaraNuevaA();
+        	}
+        });
         btnNewButton_1.setBounds(429, 101, 125, 39);
         panellogin.add(btnNewButton_1);
         
-        JLabel labelimg = new JLabel("New label");
-        labelimg.setIcon(new ImageIcon("imagenesRETO/IMGlogin.jpg"));
-        labelimg.setBounds(0, 0, 647, 422);
-        contentPane.add(labelimg);
-
-
-        
-
+        JLabel lblimg = new JLabel("");
+        lblimg.setBounds(0, 0, 647, 422);
+        contentPane.add(lblimg);
+        lblimg.setIcon(new ImageIcon("imgs/unnamed.jpg"));
+     }
+    
+    public void cambiaraNuevaA() {
+        	NuevaAgencia n1 = new NuevaAgencia();
+        	n1.setVisible(true);
+        	this.setVisible(false);
+        }
+    public void cambiaraInicioSesion() {
+    	ViajesyEventos v1 = new ViajesyEventos();
+    	v1.setVisible(true);
+    	this.setVisible(false);
     }
 }
