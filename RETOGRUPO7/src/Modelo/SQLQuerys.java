@@ -3,8 +3,12 @@ package Modelo;
 public class SQLQuerys {
 
 	//SELECTS
-	public static final String SELECT_ALUMNOS_APELLIDOS = "select * from Alumnos WHERE apellido like ?";
-	public static final String SELECT_ALUMNOS_EDAD = "select * from Alumnos WHERE timestampdiff (year , FecNac , curren_date) > ?";
+	public static final String SELECT_AGENCIA_NOMBRE = "select * from Agencia WHERE nombre = ?";
+	public static final String SELECT_AGENCIA_ID = "select * from Agencia WHERE id = ?";
+	public static final String SELECT_AGENCIA_LOGO = "select * from Agencia WHERE logo = ?";
+	public static final String SELECT_AGENCIA_COLOR_DE_MARCA = "select * from Agencia WHERE color_de_marca = ?";
+	public static final String SELECT_AGENCIA_NUMERO_DE_EMPLEADOS = "select * from Agencia WHERE numero_de_empleados = ?";
+	public static final String SELECT_AGENCIA_TIPO_DE_AGENCIA = "select * from Agencia WHERE tipo_de_agencia = ?";
 	
 	//INSERTS
 	public static final String INSERT_ALUMNO = "insert into Alumnos values ('";

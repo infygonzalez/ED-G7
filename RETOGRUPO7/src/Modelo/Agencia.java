@@ -8,7 +8,7 @@ public class Agencia {
 	private String nombre;
 	private String logo;
 	private String color;
-	private int empleados;
+	private String empleados;
 	private String tipoAgencia;
 	private ArrayList<Viaje> viaje;
 
@@ -16,7 +16,7 @@ public class Agencia {
 		
 	}
 	
-	public Agencia(String id, String nombre, String logo, String color, int empleados, String tipoAgencia,
+	public Agencia(String id, String nombre, String logo, String color, String empleados, String tipoAgencia,
 			ArrayList<Viaje> viaje) {
 		this.id = id;
 		this.nombre = nombre;
@@ -69,11 +69,11 @@ public class Agencia {
 		this.color = color;
 	}
 
-	public int getEmpleados() {
+	public String getEmpleados() {
 		return empleados;
 	}
 
-	public void setEmpleados(int empleados) {
+	public void setEmpleados(String empleados) {
 		this.empleados = empleados;
 	}
 
@@ -88,12 +88,12 @@ public class Agencia {
 	@Override
 	public String toString() {
 		return "Agencia [id=" + id + ", nombre=" + nombre + ", logo=" + logo + ", color=" + color + ", empleados="
-				+ empleados + ", tipoAgencia=" + tipoAgencia + ", viaje=" + viaje + "]";
+				+ empleados + ", tipoAgencia=" + tipoAgencia + ", viaje=" + viaje + ", empleados = "+ empleados + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, empleados, id, logo, nombre, tipoAgencia, viaje);
+		return Objects.hash(color, empleados, id, logo, nombre, tipoAgencia, viaje, empleados);
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class Agencia {
 		Agencia other = (Agencia) obj;
 		return Objects.equals(color, other.color) && empleados == other.empleados && Objects.equals(id, other.id)
 				&& Objects.equals(logo, other.logo) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(tipoAgencia, other.tipoAgencia) && Objects.equals(viaje, other.viaje);
+				&& Objects.equals(tipoAgencia, other.tipoAgencia) && Objects.equals(viaje, other.viaje) && Objects.equals(empleados, other.empleados);
 	}
 
 

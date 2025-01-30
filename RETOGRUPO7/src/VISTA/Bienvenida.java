@@ -1,17 +1,25 @@
 package VISTA;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.EventQueue;
-import java.awt.Panel;
 
-public class Bienvenida extends JPanel {
+public class Bienvenida extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -24,34 +32,33 @@ public class Bienvenida extends JPanel {
 			}
 		});
 	}
+
 	/**
-	 * Create the panel.
+	 * Create the frame.
 	 */
-	
 	public Bienvenida() {
-		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 450, 300);
-		add(panel);
-		panel.setLayout(null);
-		
-		JButton botonimg = new JButton("");
-		botonimg.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CambiarLogin();
+				CambiarLog();
 			}
 		});
-		botonimg.setIcon(new ImageIcon("C:\\Users\\in1dm3-a\\Desktop\\ETHAZI GRUPO7\\img\\logo_grupo7.png"));
-		botonimg.setBounds(0, 0, 450, 300);
-		panel.add(botonimg);
-		
-		
-
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\in1dm3-a\\git\\repository3\\RETOGRUPO7\\imgs\\logo_sin_borde.png"));
+		btnNewButton.setBounds(0, 0, 434, 261);
+		contentPane.add(btnNewButton);
 	}
-	private void CambiarLogin() {
-		Login login = new Login();
-		login.setVisible(true);
+	public void CambiarLog() {
+		Login lg = new Login();
+		lg.setVisible(true);
 		this.setVisible(false);
 	}
+
 }

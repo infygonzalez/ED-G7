@@ -6,16 +6,14 @@ import java.util.Objects;
 public class Aeropuerto {
 	private String codigoaero;
 	private String nombre;
-	private ArrayList<Vuelo> vuelo;
 	
 	public Aeropuerto() {
 		
 	}
 
-	public Aeropuerto(String codigoaero, String nombre, ArrayList<Vuelo> vuelo) {
+	public Aeropuerto(String codigoaero, String nombre) {
 		this.codigoaero = codigoaero;
 		this.nombre = nombre;
-		this.vuelo = vuelo;
 	}
 
 	public String getCodigoaero() {
@@ -34,22 +32,15 @@ public class Aeropuerto {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Vuelo> getVuelo() {
-		return vuelo;
-	}
-
-	public void setVuelo(ArrayList<Vuelo> vuelo) {
-		this.vuelo = vuelo;
-	}
 
 	@Override
 	public String toString() {
-		return "Aeropuerto [codigoaero=" + codigoaero + ", nombre=" + nombre + ", vuelo=" + vuelo + "]";
+		return "Aeropuerto [codigoaero=" + codigoaero + ", nombre=" + nombre + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigoaero, nombre, vuelo);
+		return Objects.hash(codigoaero, nombre);
 	}
 
 	@Override
@@ -61,8 +52,7 @@ public class Aeropuerto {
 		if (getClass() != obj.getClass())
 			return false;
 		Aeropuerto other = (Aeropuerto) obj;
-		return Objects.equals(codigoaero, other.codigoaero) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(vuelo, other.vuelo);
+		return Objects.equals(codigoaero, other.codigoaero) && Objects.equals(nombre, other.nombre);
 	}
 	
 	

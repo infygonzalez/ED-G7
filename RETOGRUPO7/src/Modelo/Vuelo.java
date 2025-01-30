@@ -8,9 +8,9 @@ public class Vuelo extends Evento {
 	private Date fecSal;
 	private String hora;
 	private String duracion;
-	private String aerodestino;
-	private String aeroorigen;
-	private String coddep;
+	private Aeropuerto aerodestino;
+	private Aeropuerto aeroorigen;
+	private Vuelo vueloida;
 	
 	public Vuelo() {
 		
@@ -18,7 +18,7 @@ public class Vuelo extends Evento {
 
 	
 	public Vuelo(String id, String nombre, String tipo, Viaje viaje, double precio, String codV, Date fecSal,
-			String hora, String duracion, String aerodestino, String aeroorigen, String coddep) {
+			String hora, String duracion, Aeropuerto aerodestino, Aeropuerto aeroorigen, Vuelo vueloida) {
 		super(id, nombre, tipo, viaje, precio);
 		this.codV = codV;
 		this.fecSal = fecSal;
@@ -26,36 +26,36 @@ public class Vuelo extends Evento {
 		this.duracion = duracion;
 		this.aerodestino = aerodestino;
 		this.aeroorigen = aeroorigen;
-		this.coddep = coddep;
+		this.vueloida = vueloida;
 	}
 
-	public String getCoddep() {
-		return coddep;
-	}
-
-
-	public void setCoddep(String coddep) {
-		this.coddep = coddep;
-	}
-
-
-	public String getAerodestino() {
+	public Aeropuerto getAerodestino() {
 		return aerodestino;
 	}
 
 
-	public void setAerodestino(String aerodestino) {
+	public void setAerodestino(Aeropuerto aerodestino) {
 		this.aerodestino = aerodestino;
 	}
 
 
-	public String getAeroorigen() {
+	public Aeropuerto getAeroorigen() {
 		return aeroorigen;
 	}
 
 
-	public void setAeroorigen(String aeroorigen) {
+	public void setAeroorigen(Aeropuerto aeroorigen) {
 		this.aeroorigen = aeroorigen;
+	}
+
+
+	public Vuelo getVueloida() {
+		return vueloida;
+	}
+
+
+	public void setVueloida(Vuelo vueloida) {
+		this.vueloida = vueloida;
 	}
 
 
@@ -96,7 +96,7 @@ public class Vuelo extends Evento {
 	@Override
 	public String toString() {
 		return "Vuelo [codV=" + codV + ", fecSal=" + fecSal + ", hora=" + hora + ", duracion=" + duracion
-				+ ", aerodestino=" + aerodestino + ", aeroorigen=" + aeroorigen + ", coddep=" + coddep + "]";
+				+ ", aerodestino=" + aerodestino + ", aeroorigen=" + aeroorigen + ", vueloida=" + vueloida + "]";
 	}
 
 
@@ -104,7 +104,7 @@ public class Vuelo extends Evento {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(aerodestino, aeroorigen, codV, coddep, duracion, fecSal, hora);
+		result = prime * result + Objects.hash(aerodestino, aeroorigen, codV, duracion, fecSal, hora, vueloida);
 		return result;
 	}
 
@@ -119,10 +119,12 @@ public class Vuelo extends Evento {
 			return false;
 		Vuelo other = (Vuelo) obj;
 		return Objects.equals(aerodestino, other.aerodestino) && Objects.equals(aeroorigen, other.aeroorigen)
-				&& Objects.equals(codV, other.codV) && Objects.equals(coddep, other.coddep)
-				&& Objects.equals(duracion, other.duracion) && Objects.equals(fecSal, other.fecSal)
-				&& Objects.equals(hora, other.hora);
+				&& Objects.equals(codV, other.codV) && Objects.equals(duracion, other.duracion)
+				&& Objects.equals(fecSal, other.fecSal) && Objects.equals(hora, other.hora)
+				&& Objects.equals(vueloida, other.vueloida);
 	}
+
+
 
 
 	
