@@ -26,9 +26,13 @@ public class Main {
 		for (Agencia agencia : agenciaslo) {
 			System.out.println(agencia.toString());
 		} */
-		ArrayList<Pais> paisss = ControladorA.mostrarPaises("CodPais", "nombre_pais");
+	/*	ArrayList<Pais> paisss = ControladorA.mostrarPaises("CodPais", "nombre_pais");
 		for(Pais pais : paisss) {
 			System.out.println(pais.toString());
+		} */
+		ArrayList<Viaje> viajesss = ControladorA.mostrarViajes();
+		for(Viaje viaje: viajesss) {
+			System.out.println(viaje.toString());
 		}
 	}
 

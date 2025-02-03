@@ -122,9 +122,48 @@ public static ArrayList<Pais> mostrarPaises(String codPais, String nombre) {
 	return paises;
 	}
 
-
+public static ArrayList<Viaje> mostrarViajes(){
+	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
+	ArrayList<Pais> paises = new ArrayList<Pais>();
+	
+	try {	
+		
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		ResultSet r1  = MySqlConnector.ejecutarSentencia(sql9, listaAtributos);
+		
+		while(r1.next()) {
+			Viaje v1 = new Viaje();
+			v1.setId(r1.getString("idViajes"));
+			v1.setNombre(r1.getString("nombre_viaje"));
+			v1.setDescrip(r1.getString("descripcion"));
+			v1.setTipo(r1.getString("tipo_de_viaje"));
+			v1.setFechaInc(r1.getString("fecha_inicio"));
+			v1.setFechaFin(r1.getString("fecha_fin"));
+			v1.setDuracion(Integer.parseInt(r1.getString("duracion_viaje")));
+			v1.setDescServis(r1.getString("servicios_no_incluidos"));
+			
+			String codigoPais = r1.getString("codPais");
+			
+			for(Pais pais : paises) {
+				if(pais.getCodPais().equals(codigoPais)) {
+					v1.setPais(pais);
+				}
+			}
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	
+	
+	
+	
+	return viajes;
+	
+}
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
-	a1.InsertarAgencia(agencia);
 }
 }
