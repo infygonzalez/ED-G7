@@ -126,6 +126,5 @@ public static ArrayList<Pais> mostrarPaises(String codPais, String nombre) {
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
 	a1.InsertarAgencia(agencia);
-	
 }
 }
