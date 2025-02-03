@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import CONTROLADOR.ControladorA;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -176,5 +177,16 @@ public class NuevaAgencia extends JFrame {
 		a1.setTipoAgencia(tipoAgencia);
 		a1.setContraseña(contraseña);
 		ControladorA.insertarAgencia(a1);
+		
+		if (nombre.isEmpty() || color.isEmpty() || logo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (!color.matches("#[0-9a-fA-F]{6}")) {
+            JOptionPane.showMessageDialog(this, "El color debe estar en formato hexadecimal (#RRGGBB).", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 	}
+	
 }

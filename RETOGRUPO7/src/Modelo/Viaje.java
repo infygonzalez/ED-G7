@@ -21,7 +21,7 @@ public class Viaje {
 	}
 	
 	public Viaje(String id, String nombre, String tipo, String fechaInc, String fechaFin, int duracion, 
-			String descrip, String descServis, Agencia agencia, ArrayList<Evento> evento) {
+			String descrip, String descServis, Agencia agencia, ArrayList<Evento> evento, Pais pais) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
@@ -32,8 +32,26 @@ public class Viaje {
 		DescServis = descServis;
 		this.agencia = agencia;
 		this.eventos= evento;
+		this.pais = pais;
 	}
 	
+	
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public ArrayList<Evento> getEventos() {
+		return eventos;
+	}
+
+	public void setEventos(ArrayList<Evento> eventos) {
+		this.eventos = eventos;
+	}
+
 	public ArrayList<Evento> getEvento() {
 		return eventos;
 	}
@@ -100,13 +118,13 @@ public class Viaje {
 	@Override
 	public String toString() {
 		return "Viaje [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", FechaInc=" + FechaInc + ", FechaFin="
-				+ FechaFin + ", duracion=" + duracion + ", descrip=" + descrip
-				+ ", DescServis=" + DescServis + ", agencia=" + agencia + ", evento=" + eventos + "]";
+				+ FechaFin + ", duracion=" + duracion + ", descrip=" + descrip + ", DescServis=" + DescServis
+				+ ", agencia=" + agencia + ", pais=" + pais + ", eventos=" + eventos + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(DescServis, FechaFin, FechaInc, agencia, descrip, duracion, eventos, id, nombre,
+		return Objects.hash(DescServis, FechaFin, FechaInc, agencia, descrip, duracion, eventos, id, nombre, pais,
 				tipo);
 	}
 
@@ -120,10 +138,14 @@ public class Viaje {
 			return false;
 		Viaje other = (Viaje) obj;
 		return Objects.equals(DescServis, other.DescServis) && Objects.equals(FechaFin, other.FechaFin)
-				&& Objects.equals(FechaInc, other.FechaInc) && Objects.equals(agencia, other.agencia) && Objects.equals(descrip, other.descrip)
-				&& duracion == other.duracion && Objects.equals(eventos, other.eventos) && Objects.equals(id, other.id)
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(tipo, other.tipo);
+				&& Objects.equals(FechaInc, other.FechaInc) && Objects.equals(agencia, other.agencia)
+				&& Objects.equals(descrip, other.descrip) && duracion == other.duracion
+				&& Objects.equals(eventos, other.eventos) && Objects.equals(id, other.id)
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(pais, other.pais)
+				&& Objects.equals(tipo, other.tipo);
 	}
+
+	
 
 
 	

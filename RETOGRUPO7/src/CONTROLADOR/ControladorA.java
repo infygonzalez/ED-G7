@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import Connector.MySqlConnector;
 import Modelo.Agencia;
 import Modelo.Dbutils;
+import Modelo.Pais;
 import Modelo.SQLQuerys;
+import Modelo.Viaje;
 
 public class ControladorA {
 	
@@ -20,6 +22,9 @@ public class ControladorA {
 	static String sql4 = SQLQuerys.SELECT_AGENCIA_NUMERO_DE_EMPLEADOS;
 	static String sql5 = SQLQuerys.SELECT_AGENCIA_TIPO_DE_AGENCIA;
 	static String sql6 = SQLQuerys.INSERT_AGENCIA;
+	static String sql7 = SQLQuerys.SELECT_AGENCIA_COLOR_LOGO;
+	static String sql8 = SQLQuerys.SELECT_PAIS;
+	static String sql9 = SQLQuerys.SELECT_VIAJES;
 	
 	
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
@@ -45,6 +50,7 @@ public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	}
 	return agencias;
 	}
+
 
 public static ArrayList<Agencia> obtenerAgenciaNombre(String nombre) {
 	
@@ -91,6 +97,32 @@ public static ArrayList<Agencia> obtenerAgenciaLogo(String logo) {
 	}
 	return agencias;
 	}
+
+
+public static ArrayList<Pais> mostrarPaises(String codPais, String nombre) {
+	
+	ArrayList<Pais> paises = new ArrayList<Pais>();
+
+	try {	
+		
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	ResultSet r1  = MySqlConnector.ejecutarSentencia(sql8, listaAtributos);
+	
+	while(r1.next()) {
+		Pais p1 = new Pais();
+		p1.setCodPais(r1.getString("codPais"));
+		p1.setNombre(r1.getString("nombre_pais"));
+		paises.add(p1);
+	}
+	
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return paises;
+	}
+
+
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
 	a1.InsertarAgencia(agencia);

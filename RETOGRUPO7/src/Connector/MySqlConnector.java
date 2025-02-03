@@ -55,4 +55,19 @@ public class MySqlConnector {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void mostrarViajes(Viaje viaje) {
+		Connection c2 = MySqlConnector.obtenerConexion();
+		Statement sentencia = null;
+		
+		try {
+			String sql = SQLQuerys.SELECT_VIAJES + viaje.getId() +  SQLQuerys.SEPARATOR + viaje.getAgencia() 
+			+ SQLQuerys.SEPARATOR + viaje.getPais() + SQLQuerys.SEPARATOR + viaje.getNombre() + SQLQuerys.SEPARATOR + viaje.getDescrip() + SQLQuerys.SEPARATOR + viaje.getTipo() + SQLQuerys.SEPARATOR + viaje.getFechaInc() + SQLQuerys.SEPARATOR + viaje.getFechaFin() + SQLQuerys.SEPARATOR + viaje.getDuracion() + SQLQuerys.SEPARATOR + viaje.getPais() + SQLQuerys.SEPARATOR + viaje.getDescServis() + SQLQuerys.END_BLOCK;
+			sentencia = c2.createStatement();
+			sentencia.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

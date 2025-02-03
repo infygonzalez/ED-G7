@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -93,7 +94,7 @@ public class Login extends JFrame {
         		if(usu.equals(usuarioIntroducido) && contra.equals(contraseñaIntroducida)) {
         			cambiaraInicioSesion();
         		} else {
-        			System.out.println("Las creedenciales no son correctas, vuelva a intentarlo de nuevo");
+        			JOptionPane.showMessageDialog(null, "Las creedenciales no son correctas, vuelva a intentarlo", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
         		}
         	}
         });
@@ -124,5 +125,8 @@ public class Login extends JFrame {
     	ViajesyEventos v1 = new ViajesyEventos();
     	v1.setVisible(true);
     	this.setVisible(false);
+    }
+    public void mostrarColoryLogo() {
+    	
     }
 }
