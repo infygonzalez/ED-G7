@@ -42,7 +42,7 @@ public class NuevoEvento extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Volver atras");
+		JButton btnNewButton = new JButton("Volver atra");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambiaraViajesyEventos();
