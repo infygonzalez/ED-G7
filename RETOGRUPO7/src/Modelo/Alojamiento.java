@@ -16,9 +16,9 @@ public class Alojamiento extends Evento{
 		
 	}
 	
-	public Alojamiento(String id, String nombre, String tipo, Viaje viaje, double precio, String nombreh, String ciudad,
+	public Alojamiento(String id, String nombre, String tipo, int idviaje, double precio, String nombreh, String ciudad,
 			Date fecEnt, Date fecSal, String tipoh) {
-		super(id, nombre, tipo, viaje, precio);
+		super(id, nombre, tipo, idviaje, precio);
 		this.nombreh = nombreh;
 		this.ciudad = ciudad;
 		this.fecEnt = fecEnt;

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import Connector.MySqlConnector;
 import Modelo.Agencia;
 import Modelo.Dbutils;
+import Modelo.Evento;
 import Modelo.Pais;
 import Modelo.SQLQuerys;
 import Modelo.Viaje;
@@ -27,6 +29,9 @@ public class ControladorA {
 	static String sql7 = SQLQuerys.SELECT_AGENCIA_COLOR_LOGO;
 	static String sql8 = SQLQuerys.SELECT_PAIS;
 	static String sql9 = SQLQuerys.SELECT_VIAJES;
+	static String sql10 =SQLQuerys.SELECT_EVENTOS_POR_VIAJE;
+	static String sql11 = SQLQuerys.DELETE_VIAJES;
+	static String sql12 = SQLQuerys.DELETE_EVENTOS;
 	
 	
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
@@ -41,7 +46,7 @@ public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	
 	while(r1.next()) {
 		Agencia a1 = new Agencia();
-		a1.setId(r1.getString("id"));
+		a1.setId(r1.getString("idAgencia"));
 		a1.setNombre(r1.getString("nombre"));
 		agencias.add(a1);
 	}
@@ -116,20 +121,22 @@ public static ArrayList<Pais> mostrarPaises() {
 		p1.setNombre(r1.getString("nombre_pais"));
 		paises.add(p1);
 	}
-	
+	System.out.println("Cantidad de países encontrados: " + paises.size());
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	
 	return paises;
 	}
 
-public static ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises, Agencia agencia){
+public static ArrayList<Viaje> buscarViajes(ArrayList<Pais> paises, Agencia agencia){
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	
 	try {	
 		
 		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(agencia.getId());
 		ResultSet r1  = MySqlConnector.ejecutarSentencia(sql9, listaAtributos);
 		
 		while(r1.next()) {
@@ -168,5 +175,38 @@ public static ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises, Agencia age
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
 	a1.insertarAgencia(agencia);
+}
+
+
+public static ArrayList<Evento> obtenerEventos(int idViaje) {
+	ArrayList<Evento> v1 = new ArrayList<Evento>();
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	listaAtributos.add(String.valueOf(idViaje));
+	try {
+		ResultSet r1  = MySqlConnector.ejecutarSentencia(sql10, listaAtributos);
+		while(r1.next()) {
+			Evento evento = new Evento();
+			evento.setId(r1.getString("idEvento"));
+			evento.setViaje(Integer.parseInt(r1.getString("idViajes")));
+			evento.setNombre(r1.getString("nombre_evento"));
+			evento.setTipo(r1.getString("tipo_evento"));
+			v1.add(evento);
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return v1;
+}
+
+public static void borrarViajes(String id){
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	listaAtributos.add(id);
+	try {
+		MySqlConnector.ejecutarSentenciaUpdate(sql12, listaAtributos);
+		 MySqlConnector.ejecutarSentenciaUpdate(sql11, listaAtributos);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 }

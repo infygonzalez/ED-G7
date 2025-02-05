@@ -4,7 +4,7 @@ public class SQLQuerys {
 
 	//SELECTS
 	public static final String SELECT_AGENCIA_NOMBRE = "select * from Agencia WHERE nombre = ?";
-	public static final String SELECT_AGENCIA_ID = "select * from Agencia WHERE idAgencia = ?";
+	public static final String SELECT_AGENCIA_ID = "select * from Agencia WHERE idAgencia=?";
 	public static final String SELECT_AGENCIA_LOGO = "select * from Agencia WHERE logo = ?";
 	public static final String SELECT_AGENCIA_COLOR_DE_MARCA = "select * from Agencia WHERE color_de_marca = ?";
 	public static final String SELECT_AGENCIA_NUMERO_DE_EMPLEADOS = "select * from Agencia WHERE numero_de_empleados = ?";
@@ -12,6 +12,9 @@ public class SQLQuerys {
 	public static final String SELECT_AGENCIA_COLOR_LOGO = "select color_de_marca, logo FROM Agencia WHERE nombre = ?";
 	public static final String SELECT_PAIS = "select * from Pais";
 	public static final String SELECT_VIAJES = "select * from Viajes where idAgencia =?";
+	public static final String SELECT_EVENTOS_POR_VIAJE = "select * from Eventos where idViajes = ?";
+	public static final String DELETE_VIAJES = "delete from Viajes where idViajes =?";
+	public static final String DELETE_EVENTOS = "delete from Eventos where idViajes =?";
 	
 	//INSERTS
 	public static final String INSERT_AGENCIA = "insert into Agencia(nombre, logo, color_de_marca, numero_de_empleados, tipo_de_agencia, contraseña) values ('";

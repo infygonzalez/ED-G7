@@ -17,9 +17,9 @@ public class Vuelo extends Evento {
 	}
 
 	
-	public Vuelo(String id, String nombre, String tipo, Viaje viaje, double precio, String codV, Date fecSal,
+	public Vuelo(String id, String nombre, String tipo, int idviaje, double precio, String codV, Date fecSal,
 			String hora, String duracion, Aeropuerto aerodestino, Aeropuerto aeroorigen, Vuelo vueloida) {
-		super(id, nombre, tipo, viaje, precio);
+		super(id, nombre, tipo, idviaje, precio);
 		this.codV = codV;
 		this.fecSal = fecSal;
 		this.hora = hora;

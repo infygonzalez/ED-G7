@@ -14,9 +14,9 @@ public class Otros extends Evento{
 
 	
 
-	public Otros(String id, String nombre, String tipo, Viaje viaje, double precio, Date fecha,
+	public Otros(String id, String nombre, String tipo, int idviaje, double precio, Date fecha,
 			String descripcion) {
-		super(id, nombre, tipo, viaje, precio);
+		super(id, nombre, tipo, idviaje, precio);
 		this.fecha = fecha;
 		this.descripcion = descripcion;
 	}

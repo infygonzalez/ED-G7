@@ -3,22 +3,23 @@ package Modelo;
 import java.util.Objects;
 
 public class Evento {
+	
 	private String id;
 	private String nombre;
 	private String tipo;
 	private double precio;
-	private Viaje viaje;
+	private int idviaje;
 	
 	
 	public Evento() {
 		
 	}
 
-	public Evento(String id, String nombre, String tipo, Viaje viaje, double precio) {
+	public Evento(String id, String nombre, String tipo, int idViaje, double precio) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
-		this.viaje = viaje;
+		this.idviaje = idViaje;
 		this.precio = precio;
 	}
 
@@ -59,23 +60,23 @@ public class Evento {
 		this.tipo = tipo;
 	}
 	
-	public Viaje getViaje() {
-		return viaje;
+	public int getViaje() {
+		return idviaje;
 	}
 
-	public void setViaje(Viaje viaje) {
-		this.viaje = viaje;
+	public void setViaje(int viaje) {
+		this.idviaje = viaje;
 	}
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio + ", viaje=" + viaje
+		return "Evento [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", precio=" + precio + ", viaje=" + idviaje
 				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nombre, precio, tipo, viaje);
+		return Objects.hash(id, nombre, precio, tipo, idviaje);
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class Evento {
 		Evento other = (Evento) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
-				&& Objects.equals(tipo, other.tipo) && Objects.equals(viaje, other.viaje);
+				&& Objects.equals(tipo, other.tipo) && Objects.equals(idviaje, other.idviaje);
 	}
 
 

@@ -7,9 +7,10 @@ import java.sql.SQLException;
 
 public class Dbutils {
 	
-	public static final String URL = "jdbc:mysql://localhost:33060/basegrupo7";
+	public static final String URL = "jdbc:mysql://localhost:3306/retogrupo7";
 	public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-	public static final String USER = "root";
-	public static final String PASSWORD = "elorrieta";
-	public static PreparedStatement sentencia = null; 
+	public static final String USER = "ekaitzi";
+	public static final String PASSWORD = "";
+	public static PreparedStatement sentencia = null;
+	
 }
