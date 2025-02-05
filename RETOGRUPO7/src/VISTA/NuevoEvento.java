@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class NuevoEvento extends JFrame {
 
@@ -42,13 +43,14 @@ public class NuevoEvento extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Volver atra");
+		JButton btnNewButton = new JButton("Volver atras");
+		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cambiaraViajesyEventos();
 			}
 		});
-		btnNewButton.setBounds(182, 157, 110, 23);
+		btnNewButton.setBounds(155, 160, 126, 23);
 		contentPane.add(btnNewButton);
 	}
 	public void cambiaraViajesyEventos() {

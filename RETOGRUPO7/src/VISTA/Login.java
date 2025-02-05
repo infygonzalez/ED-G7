@@ -18,6 +18,7 @@ import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -64,28 +65,33 @@ public class Login extends JFrame {
         contentPane.add(panellogin);
         panellogin.setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("Nombre agencia");
+        JLabel lblNewLabel = new JLabel("Nombre agencia:");
+        lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        lblNewLabel.setForeground(Color.WHITE);
         lblNewLabel.setBackground(Color.MAGENTA);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setBounds(0, 11, 125, 63);
+        lblNewLabel.setBounds(21, 25, 125, 63);
         panellogin.add(lblNewLabel);
         
         textAgencia = new JTextField();
-        textAgencia.setBounds(129, 25, 109, 34);
+        textAgencia.setBounds(156, 40, 125, 34);
         panellogin.add(textAgencia);
         textAgencia.setColumns(10);
         
-        JLabel lblNewLabel_1 = new JLabel("Contraseña");
+        JLabel lblNewLabel_1 = new JLabel("Contraseña:");
+        lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        lblNewLabel_1.setForeground(Color.WHITE);
         lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel_1.setBackground(new Color(0, 0, 0));
-        lblNewLabel_1.setBounds(0, 92, 125, 57);
+        lblNewLabel_1.setBounds(21, 103, 125, 57);
         panellogin.add(lblNewLabel_1);
         
         textContraseña = new JPasswordField();
-        textContraseña.setBounds(129, 102, 109, 34);
+        textContraseña.setBounds(156, 115, 125, 34);
         panellogin.add(textContraseña);
         
         JButton btnNewButton = new JButton("Iniciar sesión");
+        btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 12));
         btnNewButton.addActionListener(new ActionListener() {
         	
         	public void actionPerformed(ActionEvent e) {
@@ -98,16 +104,17 @@ public class Login extends JFrame {
         		}
         	}
         });
-        btnNewButton.setBounds(429, 25, 125, 39);
+        btnNewButton.setBounds(384, 37, 151, 39);
         panellogin.add(btnNewButton);
         
         JButton btnNewButton_1 = new JButton("Nueva agencia");
+        btnNewButton_1.setFont(new Font("Century Gothic", Font.PLAIN, 12));
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		cambiaraNuevaA();
         	}
         });
-        btnNewButton_1.setBounds(429, 101, 125, 39);
+        btnNewButton_1.setBounds(384, 112, 151, 39);
         panellogin.add(btnNewButton_1);
         
         JLabel lblimg = new JLabel("");
@@ -126,7 +133,5 @@ public class Login extends JFrame {
     	v1.setVisible(true);
     	this.setVisible(false);
     }
-    public void mostrarColoryLogo() {
-    	
-    }
+ 
 }

@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import Modelo.*;
+import java.awt.Font;
 
 public class NuevaAgencia extends JFrame {
 
@@ -70,21 +71,23 @@ public class NuevaAgencia extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblnombre = new JLabel("Nombre de la agencia");
-		lblnombre.setBounds(10, 11, 128, 27);
+		lblnombre = new JLabel("Nombre de la agencia:");
+		lblnombre.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lblnombre.setBounds(10, 14, 144, 20);
 		contentPane.add(lblnombre);
 		
 		txtnombre = new JTextField();
-		txtnombre.setBounds(142, 14, 151, 20);
+		txtnombre.setBounds(157, 14, 151, 20);
 		contentPane.add(txtnombre);
 		txtnombre.setColumns(10);
 		
-		lblcolor = new JLabel("Color de marca");
-		lblcolor.setBounds(10, 49, 108, 20);
+		lblcolor = new JLabel("Color de marca:");
+		lblcolor.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lblcolor.setBounds(10, 45, 144, 20);
 		contentPane.add(lblcolor);
 		
 		panelcolor = new JPanel();
-		panelcolor.setBounds(264, 49, 29, 20);
+		panelcolor.setBounds(316, 45, 29, 20);
 		contentPane.add(panelcolor);
 		panelcolor.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -101,38 +104,44 @@ public class NuevaAgencia extends JFrame {
 			}
 		});
 		
-		txtColor.setBounds(142, 49, 86, 20);
+		txtColor.setBounds(157, 45, 86, 20);
 		contentPane.add(txtColor);
 		txtColor.setColumns(10);
 		
-		lblnumemple = new JLabel("Número de empleados");
-		lblnumemple.setBounds(10, 92, 108, 14);
+		lblnumemple = new JLabel("Número de empleados:");
+		lblnumemple.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lblnumemple.setBounds(10, 89, 144, 20);
 		contentPane.add(lblnumemple);
 		
 		listaemple = new JComboBox();
+		listaemple.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		listaemple.setModel(new DefaultComboBoxModel(new String[] {"Entre 2 y 10 empleados", "Entre 10 y 100 empleados", "Entre 100 y 1000 empleados"}));
-		listaemple.setBounds(142, 86, 128, 27);
+		listaemple.setBounds(157, 86, 163, 27);
 		contentPane.add(listaemple);
 		
-		lbltipoA = new JLabel("Tipo de Agencia");
-		lbltipoA.setBounds(10, 132, 108, 14);
+		lbltipoA = new JLabel("Tipo de Agencia:");
+		lbltipoA.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lbltipoA.setBounds(10, 127, 144, 20);
 		contentPane.add(lbltipoA);
 		
 		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 11));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"mayorista", "minorista", "mayorista-minorista"}));
-		comboBox.setBounds(142, 128, 128, 27);
+		comboBox.setBounds(157, 124, 128, 27);
 		contentPane.add(comboBox);
 		
-		lbllogo = new JLabel("Logo");
-		lbllogo.setBounds(10, 174, 46, 14);
+		lbllogo = new JLabel("Logo:");
+		lbllogo.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lbllogo.setBounds(10, 171, 144, 20);
 		contentPane.add(lbllogo);
 		
 		textField = new JTextField();
-		textField.setBounds(142, 171, 151, 20);
+		textField.setBounds(157, 171, 151, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		botonguardar = new JButton("Guardar");
+		botonguardar.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		botonguardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -144,20 +153,22 @@ public class NuevaAgencia extends JFrame {
 		contentPane.add(botonguardar);
 		
 		botonCancelar = new JButton("Cancelar");
+		botonCancelar.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		botonCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				volveraInicioSesion();
 			}
 		});
-		botonCancelar.setBounds(233, 246, 89, 23);
+		botonCancelar.setBounds(256, 246, 89, 23);
 		contentPane.add(botonCancelar);
 		
-		lblcontra = new JLabel("Contraseña");
-		lblcontra.setBounds(10, 213, 74, 14);
+		lblcontra = new JLabel("Contraseña:");
+		lblcontra.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		lblcontra.setBounds(10, 202, 144, 20);
 		contentPane.add(lblcontra);
 		
 		txtContra = new JTextField();
-		txtContra.setBounds(142, 210, 151, 20);
+		txtContra.setBounds(157, 202, 151, 20);
 		contentPane.add(txtContra);
 		txtContra.setColumns(10);
 		

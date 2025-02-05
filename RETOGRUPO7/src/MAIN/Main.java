@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-	/*	ArrayList<Agencia> agenciaid = ControladorA.obtenerAgenciaId("1");
+		ArrayList<Agencia> agenciaid = ControladorA.obtenerAgenciaId("1");
 		for (Agencia agencia : agenciaid) {
 			System.out.println(agencia.toString());
 		}
@@ -25,15 +25,6 @@ public class Main {
 		ArrayList<Agencia> agenciaslo = ControladorA.obtenerAgenciaLogo("img");
 		for (Agencia agencia : agenciaslo) {
 			System.out.println(agencia.toString());
-		} */
-	/*	ArrayList<Pais> paisss = ControladorA.mostrarPaises("CodPais", "nombre_pais");
-		for(Pais pais : paisss) {
-			System.out.println(pais.toString());
-		} */
-		ArrayList<Viaje> viajesss = ControladorA.mostrarViajes();
-		for(Viaje viaje: viajesss) {
-			System.out.println(viaje.toString());
 		}
 	}
-
 }

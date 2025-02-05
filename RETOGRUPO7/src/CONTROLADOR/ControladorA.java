@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
 import Connector.MySqlConnector;
 import Modelo.Agencia;
 import Modelo.Dbutils;
@@ -99,7 +101,7 @@ public static ArrayList<Agencia> obtenerAgenciaLogo(String logo) {
 	}
 
 
-public ArrayList<Pais> mostrarPaises() {
+public static ArrayList<Pais> mostrarPaises() {
 	
 	ArrayList<Pais> paises = new ArrayList<Pais>();
 
@@ -148,6 +150,12 @@ public static ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises, Agencia age
 					v1.setPais(pais);
 				}
 			}
+			String idAgencia = r1.getString("idAgencia");
+			if(agencia.getId().equals(idAgencia)) {
+				v1.setAgencia(agencia);
+			}	
+			viajes.add(v1);
+			
 		}
 		
 		} catch (SQLException e) {
@@ -156,6 +164,7 @@ public static ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises, Agencia age
 		}
 	return viajes;
 }
+
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
 	a1.insertarAgencia(agencia);
