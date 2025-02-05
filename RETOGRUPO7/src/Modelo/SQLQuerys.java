@@ -11,7 +11,7 @@ public class SQLQuerys {
 	public static final String SELECT_AGENCIA_TIPO_DE_AGENCIA = "select * from Agencia WHERE tipo_de_agencia = ?";
 	public static final String SELECT_AGENCIA_COLOR_LOGO = "select color_de_marca, logo FROM Agencia WHERE nombre = ?";
 	public static final String SELECT_PAIS = "select * from Pais";
-	public static final String SELECT_VIAJES = "select * from Viajes";
+	public static final String SELECT_VIAJES = "select * from Viajes where idAgencia =?";
 	
 	//INSERTS
 	public static final String INSERT_AGENCIA = "insert into Agencia(nombre, logo, color_de_marca, numero_de_empleados, tipo_de_agencia, contraseña) values ('";

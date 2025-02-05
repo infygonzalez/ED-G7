@@ -41,7 +41,7 @@ public class MySqlConnector {
 		
 		return r1;
 	}
-	public static void InsertarAgencia(Agencia agencia) {
+	public static void insertarAgencia(Agencia agencia) {
 		Connection c2 = MySqlConnector.obtenerConexion();
 		Statement sentencia = null;
 		

@@ -21,6 +21,8 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ViajesyEventos extends JFrame {
 
@@ -50,7 +52,7 @@ public class ViajesyEventos extends JFrame {
 	 */
 	public ViajesyEventos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 663, 461);
+		setBounds(100, 100, 703, 461);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -69,19 +71,29 @@ public class ViajesyEventos extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Nuevo Viaje");
-		btnNewButton.setBounds(531, 87, 106, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cambiaraNuevoViaje();
+			}
+		});
+		btnNewButton.setBounds(531, 87, 128, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Nuevo Evento");
-		btnNewButton_1.setBounds(531, 257, 106, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cambiaraNuevoEvento();
+			}
+		});
+		btnNewButton_1.setBounds(531, 268, 128, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Generar Oferta");
-		btnNewButton_2.setBounds(233, 362, 106, 23);
+		btnNewButton_2.setBounds(233, 362, 128, 23);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Desconectar");
-		btnNewButton_3.setBounds(488, 362, 99, 23);
+		btnNewButton_3.setBounds(488, 362, 128, 23);
 		contentPane.add(btnNewButton_3);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -100,12 +112,14 @@ public class ViajesyEventos extends JFrame {
 		
 	}
 	
-	public void mostrar(String table) {
-		String sql = "SELECT * from " + table;
-		Statement sqll;
-		Connection conexion = MySqlConnector.obtenerConexion();
-		DefaultTableModel model = new DefaultTableModel();
-		model.addColumn("idViaje");
-		
+	public void cambiaraNuevoViaje(){
+		NuevoViaje n = new NuevoViaje();
+		n.setVisible(true);
+		this.setVisible(false);
+	}
+	public void cambiaraNuevoEvento() {
+		NuevoEvento ne = new NuevoEvento();
+		ne.setVisible(true);
+		this.setVisible(false);
 	}
 }

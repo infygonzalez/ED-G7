@@ -99,7 +99,7 @@ public static ArrayList<Agencia> obtenerAgenciaLogo(String logo) {
 	}
 
 
-public static ArrayList<Pais> mostrarPaises(String codPais, String nombre) {
+public ArrayList<Pais> mostrarPaises() {
 	
 	ArrayList<Pais> paises = new ArrayList<Pais>();
 
@@ -122,9 +122,8 @@ public static ArrayList<Pais> mostrarPaises(String codPais, String nombre) {
 	return paises;
 	}
 
-public static ArrayList<Viaje> mostrarViajes(){
+public static ArrayList<Viaje> mostrarViajes(ArrayList<Pais> paises, Agencia agencia){
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
-	ArrayList<Pais> paises = new ArrayList<Pais>();
 	
 	try {	
 		
@@ -155,15 +154,10 @@ public static ArrayList<Viaje> mostrarViajes(){
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-	
-	
-	
-	
 	return viajes;
-	
 }
 public static void insertarAgencia(Agencia agencia) {
 	MySqlConnector a1 = new MySqlConnector();
+	a1.insertarAgencia(agencia);
 }
 }
