@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    background-image: url(../img/fondo2.png);
+    background-size: cover;
+  }
+  
+  .logo {
+    text-align: center;
+  }
+  .ocultar{
+    display:none;
+  }
+
+  .form-container {
+    background-color: rgb(233, 233, 233);
+    padding-right: 60px;
+    padding-left: 40px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 8px;
+    width: 600px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  
+ .radio-group label, input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1px;
+    margin-right: 30px;
+    padding: 1px;
+}
+.radio-group {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 60px;
+    margin-left: 0px;
+}
+.radio-group label{
+  margin-left: -50px;
+}
+
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: lightgrey;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid black;
+  }
+  
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  #guardar {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 103%;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  
+  #guardar:hover {
+    background-color: #333;
+  }
+  

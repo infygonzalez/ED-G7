@@ -1,0 +1,297 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/*MENU DE NAVEGACION*/
+header {
+    background-color: #ffffff;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0;
+}
+nav {
+    padding: 0px;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    gap: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #201d1b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    display: block;
+}
+nav ul li {
+    position: relative;
+}
+
+img {
+    margin: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+nav img {
+    max-width: 100px;
+    height: auto;
+    padding: 10px;
+}
+
+/*IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+.imageninicio {
+    background-image: url("../img/imageninicio2.png");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 150px 20px;
+    color: white;
+}
+.imageninicio h1 {
+    font-size: 2em;
+    font-family: serif;
+}
+section {
+    margin: 20px 0;
+}
+
+/*BOTON CERRAR SESION*/
+#cerrarSesion{
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+/*ESTILO A LOS TIPOS DE LETRA*/
+hr{
+    background-color: rgb(0, 0, 0);
+    height: 3px;
+    width: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+p {
+    font-family: "Raleway", serif;
+    font-size: 15px;
+}
+h2, h1 {
+    font-family: "Raleway", serif;
+}
+h1 {
+    font-size: 28px;
+    color: rgb(0, 0, 0);
+}
+
+/*MENU DESPLEGABLE*/
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000;
+    min-width: 150px;
+}
+
+.submenu li {
+    display: block;
+}
+.submenu a {
+    padding: 10px;
+    color: #fff;
+    font-size: 17px;
+    display: block;
+    text-align: left;
+}
+.submenu li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+nav ul li:hover .submenu {
+    display: block;
+}
+
+
+.formularioContacto {
+    margin: 0 auto;
+    max-width: 80%;
+    text-align: center;
+}
+/*FORMULARIO DE CONTACTO*/
+.contact_form {
+  width: 460px;
+  height: auto;
+  margin: 60px auto;
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #fbfbfb;
+  padding-left: 30px;
+  box-shadow:  14px 14px 20px 14px rgba(20, 20, 20, 0.3);
+}
+
+input {
+  background-color: #fbfbfb;
+  width: 408px;
+  height: 40px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+textarea {
+  background-color: #fbfbfb;
+  width: 405px;
+  height: 150px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  font-family: "Raleway", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+label {
+  display: block;
+  float: center;
+}
+
+#enviar {
+  height: 45px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  background-color: #000000;
+  border-color: #000000;
+  border-style: solid;
+  border-radius: 10px;
+  width: 405px;
+  cursor: pointer;
+}
+
+button p {
+  color: #fff;
+}
+
+span {
+  color: #000000;
+}
+
+.aviso {
+  font-size: 13px;
+  color: #0e0e0e;
+}
+
+h1 {
+  font-size: 28px;
+
+  color: #000000;
+}
+
+h3 {
+  font-size: 16px;
+  padding-bottom: 30px;
+  color: #0e0e0e;
+}
+
+::-webkit-input-placeholder {
+  color: #a8a8a8;
+}
+
+::-webkit-textarea-placeholder {
+  color: #a8a8a8;
+}
+
+.formulario input:focus {
+  outline: 1;
+  border: 1px solid #d0ff00;
+}
+
+.formulario textarea:focus {
+  outline: 1;
+
+}
+/*FOOTER*/
+.footer {
+    padding: 20px 0;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+}
+.footer ul {
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+    font-size: 18px;
+    font-family: "Raleway", serif;
+    font-size: 16px;
+}
+.footer a:hover {
+    opacity: 1;
+}
+.footer .copyright {
+    font-size: 14px;
+}
+
+/*MEDIA QUERIES*/
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .imageninicio {
+        padding: 100px 10px;
+    }
+    .botones {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    .btnviaje, .btnservicios {
+        width: 80px;
+        height: 80px;
+    }
+}
