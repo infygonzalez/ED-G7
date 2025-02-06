@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$servername = "127.0.0.1:33060"; 
+$servername = "127.0.0.1:33060"; //ruta de el puerto.
 $username = "root"; 
 $password = "elorrieta";
 $dbname = "basegrupo7"; 

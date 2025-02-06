@@ -45,6 +45,7 @@
             estamos aquí para diseñar la experiencia perfecta para ti.<br> <b> <i>¡Descubre el mundo con nosotros!</i></b></p>
         </div>
         <hr>
+        
         <div class="botones">
             <button class="btnviaje" onclick="location.href='registroViajes.php'">
             </button>
