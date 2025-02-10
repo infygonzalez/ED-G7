@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,13 @@ import Modelo.SQLQuerys;
 import Modelo.Viaje;
 
 public class ControladorA {
+	
+	//**********************************************************
+	//VARIABLES DE SESION
+	public static Agencia agenciaSesion;
+	
+	
+	//**********************************************************
 	
 	static String sql = SQLQuerys.SELECT_AGENCIA_ID;
 	static String sql1 = SQLQuerys.SELECT_AGENCIA_NOMBRE;
@@ -34,6 +42,70 @@ public class ControladorA {
 	static String sql12 = SQLQuerys.DELETE_EVENTOS;
 	static String sql13 = SQLQuerys.HACER_LOGIN;
 	static String sql14 = SQLQuerys.SELECT_NOMBRE_PAIS;
+	static String sql15 = SQLQuerys.SELECT_CODPAIS;
+	
+	
+	
+	
+public static void insertarViaje(Viaje viaje) {
+	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(viaje.getNombre());
+		listaAtributos.add(viaje.getAgencia().getId());
+		listaAtributos.add(viaje.getPais().getCodPais());
+		listaAtributos.add(viaje.getNombre());
+		listaAtributos.add(viaje.getTipo());
+
+		// Crear un formateador de fecha
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		// Convertir las fechas a formato correcto antes de agregarlas a la lista
+		String fechaInicioFormatted = sdf.format(viaje.getFechaInc());
+		String fechaFinFormatted = sdf.format(viaje.getFechaFin());
+
+		// Agregar las fechas formateadas a la lista
+		listaAtributos.add(fechaInicioFormatted);
+		listaAtributos.add(fechaFinFormatted);
+
+		listaAtributos.add(String.valueOf(viaje.getDuracion()));
+		listaAtributos.add(viaje.getPais().getNombre());
+		listaAtributos.add(viaje.getDescrip());
+		listaAtributos.add(viaje.getDescServis());
+		
+		MySqlConnector.ejecutarSentenciaUpdate(sql6, listaAtributos);
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+}	
+	
+	
+	
+	
+public static ArrayList<Pais> obtenerPaisId(String id){
+	ArrayList<Pais> paises = new ArrayList<Pais>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(id);
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql15, listaAtributos);
+	
+	while(r1.next()) {
+		Pais p1 = new Pais();
+		p1.setCodPais(r1.getString("CodPais"));
+		p1.setNombre(r1.getString("nombre_pais"));
+		paises.add(p1);
+	}
+	System.out.println("Cantidad de países encontrados: " + paises.size());
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	return paises;
+}	
+	
+	
 	
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	
@@ -65,7 +137,23 @@ public boolean autenticarUsuario(String usuario, String contraseña) {
 	listaAtributos.add(contraseña);
 	try {
 		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql13, listaAtributos);
-		return r1.next();
+		Agencia a1 = new Agencia();
+		if(r1.next()) {
+			while(r1.next()) {
+				a1.setId(r1.getString("idAgencia"));
+				a1.setNombre("nombre");
+				a1.setLogo(r1.getString("logo"));
+				a1.setColor("color_de_marca");
+				a1.setTipoAgencia("tipo_de_agencia");
+				a1.setEmpleados("numero_de_empleados");
+			}
+			agenciaSesion = a1;
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}catch(SQLException e) {
 		e.printStackTrace();
 		return false;
@@ -130,7 +218,7 @@ public static ArrayList<Pais> mostrarPaises() {
 	
 	while(r1.next()) {
 		Pais p1 = new Pais();
-		p1.setCodPais(r1.getString("codPais"));
+		p1.setCodPais(r1.getString("CodPais"));
 		p1.setNombre(r1.getString("nombre_pais"));
 		paises.add(p1);
 	}
@@ -150,6 +238,7 @@ public static ArrayList<Pais> mostrarNombrePais(){
 		ResultSet r1  = MySqlConnector.ejecutarSentencia(sql14, listaAtributos);
 		while(r1.next()) {
 			Pais p1 = new Pais();
+			p1.setCodPais(r1.getString("CodPais"));
 			p1.setNombre(r1.getString("nombre_pais"));
 			pais.add(p1);
 		}
@@ -176,8 +265,8 @@ public static ArrayList<Viaje> buscarViajes(ArrayList<Pais> paises, Agencia agen
 			v1.setNombre(r1.getString("nombre_viaje"));
 			v1.setDescrip(r1.getString("descripcion"));
 			v1.setTipo(r1.getString("tipo_de_viaje"));
-			v1.setFechaInc(r1.getString("fecha_inicio"));
-			v1.setFechaFin(r1.getString("fecha_fin"));
+			v1.setFechaInc(r1.getDate("fecha_inicio"));
+			v1.setFechaFin(r1.getDate("fecha_fin"));
 			v1.setDuracion(Integer.parseInt(r1.getString("duracion_viaje")));
 			v1.setDescServis(r1.getString("servicios_no_incluidos"));
 			

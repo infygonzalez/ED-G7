@@ -1,14 +1,15 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 public class Viaje {
 	private String id;
 	private String nombre;
 	private String tipo;
-	private String FechaInc;
-	private String FechaFin;
+	private Date FechaInc;
+	private Date FechaFin;
 	private	int duracion;
 	private String descrip;
 	private String DescServis;
@@ -20,7 +21,7 @@ public class Viaje {
 		
 	}
 	
-	public Viaje(String id, String nombre, String tipo, String fechaInc, String fechaFin, int duracion, 
+	public Viaje(String id, String nombre, String tipo, Date fechaInc, Date fechaFin, int duracion, 
 			String descrip, String descServis, Agencia agencia, ArrayList<Evento> evento, Pais pais) {
 		this.id = id;
 		this.nombre = nombre;
@@ -78,18 +79,23 @@ public class Viaje {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public String getFechaInc() {
+	
+	public Date getFechaInc() {
 		return FechaInc;
 	}
-	public void setFechaInc(String fechaInc) {
+
+	public void setFechaInc(Date fechaInc) {
 		FechaInc = fechaInc;
 	}
-	public String getFechaFin() {
+
+	public Date getFechaFin() {
 		return FechaFin;
 	}
-	public void setFechaFin(String fechaFin) {
+
+	public void setFechaFin(Date fechaFin) {
 		FechaFin = fechaFin;
 	}
+
 	public int getDuracion() {
 		return duracion;
 	}

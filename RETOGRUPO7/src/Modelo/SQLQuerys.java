@@ -16,10 +16,11 @@ public class SQLQuerys {
 	public static final String DELETE_VIAJES = "delete from Viajes where idViajes =?";
 	public static final String DELETE_EVENTOS = "delete from Eventos where idViajes =?";
 	public static final String HACER_LOGIN = "select * from Agencia where nombre =? and contraseña = ?";
-	public static final String SELECT_NOMBRE_PAIS = "select nombre_pais from Pais";
+	public static final String SELECT_NOMBRE_PAIS = "select * from Pais";
+	public static final String SELECT_CODPAIS = "select * from Pais where CodPais =?";
 	//INSERTS
 	public static final String INSERT_AGENCIA = "insert into Agencia(nombre, logo, color_de_marca, numero_de_empleados, tipo_de_agencia, contraseña) values ('";
-	public static final String INSERT_VIAJE = "insert into Viajes(idAgencia, CodPais, nombre_viaje, tipo_de_viaje, fecha_inicio, fecha_fin, duracion_viaje, pais_destino, descripcion, servicios_no_incluidos) values('";
+	public static final String INSERT_VIAJE = "insert into Viajes(idViajes, idAgencia, CodPais, nombre_viaje, tipo_de_viaje, fecha_inicio, fecha_fin, duracion_viaje, pais_destino, descripcion, servicios_no_incluidos) values(?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";
 	

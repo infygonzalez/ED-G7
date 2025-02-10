@@ -21,7 +21,9 @@ import java.util.Date;
 import javax.swing.event.ChangeListener;
 
 import CONTROLADOR.ControladorA;
+import Modelo.Agencia;
 import Modelo.Pais;
+import Modelo.Viaje;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.PopupMenuListener;
@@ -37,6 +39,9 @@ public class NuevoViaje extends JFrame {
 	private JSpinner fechaFin;
 	private JTextField txtDias;
 	private JComboBox <String> comboBoxPais;
+	private JComboBox <String> comboBoxTipo;
+	private JTextArea textDesc;
+	private JTextArea textServ;
 
 	/**
 	 * Launch the application.
@@ -58,6 +63,7 @@ public class NuevoViaje extends JFrame {
 	 * Create the frame.
 	 */
 	public NuevoViaje() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 703, 461);
 		contentPane = new JPanel();
@@ -127,10 +133,10 @@ public class NuevoViaje extends JFrame {
 		contentPane.add(txtViaje);
 		txtViaje.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Novios", "Senior", "Grupos", "Grandes Viajes (destinos exóticos)", "Combinado (vuelo + hotel)", "Escapadas", "Familias con niños menores"}));
-		comboBox.setBounds(141, 57, 125, 22);
-		contentPane.add(comboBox);
+		comboBoxTipo = new JComboBox();
+		comboBoxTipo.setModel(new DefaultComboBoxModel(new String[] {"Novios", "Senior", "Grupos", "Grandes Viajes (destinos exóticos)", "Combinado (vuelo + hotel)", "Escapadas", "Familias con niños menores"}));
+		comboBoxTipo.setBounds(141, 57, 125, 22);
+		contentPane.add(comboBoxTipo);
 		
 		txtDias = new JTextField();
 		txtDias.setBounds(141, 177, 86, 20);
@@ -168,15 +174,20 @@ public class NuevoViaje extends JFrame {
 		contentPane.add(fechaInicio);
 		contentPane.add(fechaFin);
 		
-		JTextArea textDesc = new JTextArea();
+		textDesc = new JTextArea();
 		textDesc.setBounds(141, 259, 166, 64);
 		contentPane.add(textDesc);
 		
-		JTextArea textServ = new JTextArea();
+		textServ = new JTextArea();
 		textServ.setBounds(141, 334, 166, 64);
 		contentPane.add(textServ);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				insertarViaje();
+			}
+		});
 		btnGuardar.setBounds(447, 141, 125, 23);
 		contentPane.add(btnGuardar);
 	}
@@ -210,7 +221,27 @@ public class NuevoViaje extends JFrame {
 		comboBoxPais.removeAllItems();
 		
 		for(Pais pais : paises) {
-			comboBoxPais.addItem(pais.getNombre());
+			comboBoxPais.addItem(pais.getCodPais() + " - " +  pais.getNombre());
 		}
+	}
+	private void insertarViaje() {
+		Viaje nuevoviaje = new Viaje();
+		
+		Agencia age = ControladorA.agenciaSesion;
+		nuevoviaje.setNombre(txtViaje.getText());
+		nuevoviaje.setTipo((String) comboBoxTipo.getSelectedItem());
+		nuevoviaje.setFechaInc((Date) fechaInicio.getValue());
+		nuevoviaje.setFechaFin((Date) fechaFin.getValue());
+		nuevoviaje.setDuracion(Integer.parseInt(txtDias.getText()));
+		
+		String comboresponse = comboBoxPais.getSelectedItem().toString();
+		String parte = comboresponse.split("-")[0].trim();
+		
+		Pais p1 = ControladorA.obtenerPaisId(parte).get(0);
+		nuevoviaje.setPais(p1);
+		nuevoviaje.setDescrip(textDesc.getText());
+		nuevoviaje.setDescServis(textServ.getText());
+		nuevoviaje.setAgencia(age);
+		ControladorA.insertarViaje(nuevoviaje);
 	}
 }
