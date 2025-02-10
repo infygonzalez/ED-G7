@@ -68,7 +68,7 @@ public class ViajesyEventos extends JFrame {
 	 * Create the frame.
 	 */
 	public ViajesyEventos() {
-		Agencia agencia = ControladorA.obtenerAgenciaId("2").get(0);
+		Agencia agencia = ControladorA.obtenerAgenciaId("1").get(0);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 703, 461);
 		contentPane = new JPanel();
@@ -194,6 +194,21 @@ public class ViajesyEventos extends JFrame {
 		contentPane.add(botoneliminar);
 		
 		JButton btnNewButton_4_1 = new JButton("X");
+		btnNewButton_4_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int filaSeleccionada = tablaeventos.getSelectedRow();
+
+		        if (filaSeleccionada != -1) { 
+		            String idEvento = (String) tablaeventos.getValueAt(filaSeleccionada, 0);
+		            ControladorA.borrarEventos(idEvento);
+
+		            DefaultTableModel modelo = (DefaultTableModel) tablaeventos.getModel();
+		            modelo.removeRow(filaSeleccionada); 
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Selecciona un evento para eliminar.");
+		        }
+			}
+		});
 		btnNewButton_4_1.setBackground(Color.GREEN);
 		btnNewButton_4_1.setBounds(484, 269, 51, 38);
 		contentPane.add(btnNewButton_4_1);

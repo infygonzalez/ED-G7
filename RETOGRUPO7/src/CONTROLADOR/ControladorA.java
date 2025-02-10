@@ -142,9 +142,7 @@ public static ArrayList<Pais> mostrarPaises() {
 	
 	return paises;
 	}
-public static void insertarViaje(Viaje viaje) {
-	
-}
+
 public static ArrayList<Pais> mostrarNombrePais(){
 	ArrayList<Pais> pais = new ArrayList<Pais>();
 	try {
@@ -235,8 +233,17 @@ public static void borrarViajes(String id){
 	ArrayList<String> listaAtributos = new ArrayList<String>();
 	listaAtributos.add(id);
 	try {
+		MySqlConnector.ejecutarSentenciaUpdate(sql11, listaAtributos);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+public static void borrarEventos(String id){
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	listaAtributos.add(id);
+	try {
 		MySqlConnector.ejecutarSentenciaUpdate(sql12, listaAtributos);
-		 MySqlConnector.ejecutarSentenciaUpdate(sql11, listaAtributos);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
