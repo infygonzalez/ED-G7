@@ -25,14 +25,15 @@ public class ControladorA {
 	static String sql3 = SQLQuerys.SELECT_AGENCIA_COLOR_DE_MARCA;
 	static String sql4 = SQLQuerys.SELECT_AGENCIA_NUMERO_DE_EMPLEADOS;
 	static String sql5 = SQLQuerys.SELECT_AGENCIA_TIPO_DE_AGENCIA;
-	static String sql6 = SQLQuerys.INSERT_AGENCIA;
+	static String sql6 = SQLQuerys.INSERT_VIAJE;
 	static String sql7 = SQLQuerys.SELECT_AGENCIA_COLOR_LOGO;
 	static String sql8 = SQLQuerys.SELECT_PAIS;
 	static String sql9 = SQLQuerys.SELECT_VIAJES;
 	static String sql10 =SQLQuerys.SELECT_EVENTOS_POR_VIAJE;
 	static String sql11 = SQLQuerys.DELETE_VIAJES;
 	static String sql12 = SQLQuerys.DELETE_EVENTOS;
-	
+	static String sql13 = SQLQuerys.HACER_LOGIN;
+	static String sql14 = SQLQuerys.SELECT_NOMBRE_PAIS;
 	
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	
@@ -58,6 +59,18 @@ public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	return agencias;
 	}
 
+public boolean autenticarUsuario(String usuario, String contraseña) {
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	listaAtributos.add(usuario);
+	listaAtributos.add(contraseña);
+	try {
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql13, listaAtributos);
+		return r1.next();
+	}catch(SQLException e) {
+		e.printStackTrace();
+		return false;
+	}
+}
 
 public static ArrayList<Agencia> obtenerAgenciaNombre(String nombre) {
 	
@@ -129,7 +142,27 @@ public static ArrayList<Pais> mostrarPaises() {
 	
 	return paises;
 	}
-
+public static void insertarViaje(Viaje viaje) {
+	
+}
+public static ArrayList<Pais> mostrarNombrePais(){
+	ArrayList<Pais> pais = new ArrayList<Pais>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		ResultSet r1  = MySqlConnector.ejecutarSentencia(sql14, listaAtributos);
+		while(r1.next()) {
+			Pais p1 = new Pais();
+			p1.setNombre(r1.getString("nombre_pais"));
+			pais.add(p1);
+		}
+		System.out.println("Cantidad de países encontrados: " + pais.size());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pais;
+}
 public static ArrayList<Viaje> buscarViajes(ArrayList<Pais> paises, Agencia agencia){
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	

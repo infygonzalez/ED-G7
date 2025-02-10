@@ -16,6 +16,9 @@ import javax.swing.JPasswordField;
 import java.awt.SystemColor;
 import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
+
+import CONTROLADOR.ControladorA;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -26,8 +29,6 @@ public class Login extends JFrame {
     private JPanel contentPane;
     private JTextField textAgencia;
     private JPasswordField textContraseña;
-    private String usu = "admingrupo7";
-    private String contra = "1234";
 
     /**
      * Launch the application.
@@ -97,13 +98,15 @@ public class Login extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		String usuarioIntroducido = textAgencia.getText();
         		String contraseñaIntroducida = new String (textContraseña.getPassword());
-        		if(usu.equals(usuarioIntroducido) && contra.equals(contraseñaIntroducida)) {
+        		ControladorA login = new ControladorA();
+        		if(login.autenticarUsuario(usuarioIntroducido, contraseñaIntroducida)) {
+        			JOptionPane.showMessageDialog(null, "Inicio de sesion correcto!");
         			cambiaraInicioSesion();
         		} else {
-        			JOptionPane.showMessageDialog(null, "Las creedenciales no son correctas, vuelva a intentarlo", "WARNING_MESSAGE", JOptionPane.WARNING_MESSAGE);
+        			JOptionPane.showMessageDialog(null, "usuario o contraseña incorrectos");
         		}
-        	}
-        });
+        	}  
+        	});
         btnNewButton.setBounds(384, 37, 151, 39);
         panellogin.add(btnNewButton);
         
