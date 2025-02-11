@@ -186,6 +186,7 @@ public class NuevoViaje extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				insertarViaje();
+				cambiaraViajesyEventos();
 			}
 		});
 		btnGuardar.setBounds(447, 141, 125, 23);

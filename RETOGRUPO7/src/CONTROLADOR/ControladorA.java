@@ -51,7 +51,7 @@ public static void insertarViaje(Viaje viaje) {
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	try {
 		ArrayList<String> listaAtributos = new ArrayList<String>();
-		listaAtributos.add(viaje.getNombre());
+		listaAtributos.add(viaje.getId());
 		listaAtributos.add(viaje.getAgencia().getId());
 		listaAtributos.add(viaje.getPais().getCodPais());
 		listaAtributos.add(viaje.getNombre());
