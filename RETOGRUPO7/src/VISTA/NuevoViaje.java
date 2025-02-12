@@ -226,23 +226,62 @@ public class NuevoViaje extends JFrame {
 		}
 	}
 	private void insertarViaje() {
-		Viaje nuevoviaje = new Viaje();
-		
-		Agencia age = ControladorA.agenciaSesion;
-		nuevoviaje.setNombre(txtViaje.getText());
-		nuevoviaje.setTipo((String) comboBoxTipo.getSelectedItem());
-		nuevoviaje.setFechaInc((Date) fechaInicio.getValue());
-		nuevoviaje.setFechaFin((Date) fechaFin.getValue());
-		nuevoviaje.setDuracion(Integer.parseInt(txtDias.getText()));
-		
-		String comboresponse = comboBoxPais.getSelectedItem().toString();
-		String parte = comboresponse.split("-")[0].trim();
-		
-		Pais p1 = ControladorA.obtenerPaisId(parte).get(0);
-		nuevoviaje.setPais(p1);
-		nuevoviaje.setDescrip(textDesc.getText());
-		nuevoviaje.setDescServis(textServ.getText());
-		nuevoviaje.setAgencia(age);
-		ControladorA.insertarViaje(nuevoviaje);
+	    // Verificar que todos los campos sean obligatorios
+	    if (txtViaje.getText().trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "El nombre del viaje es obligatorio.");
+	    }
+	    
+	    if (comboBoxTipo.getSelectedItem() == null) {
+	        JOptionPane.showMessageDialog(null, "Debe seleccionar un tipo de viaje.");
+	        
+	    }
+	    
+	    if (fechaInicio.getValue() == null || fechaFin.getValue() == null) {
+	        JOptionPane.showMessageDialog(null, "Las fechas de inicio y fin son obligatorias.");
+	        
+	    }
+	    
+	    Date inicio = (Date) fechaInicio.getValue();
+	    Date fin = (Date) fechaFin.getValue();
+	    if (fin.before(inicio)) {
+	        JOptionPane.showMessageDialog(null, "La fecha de fin debe ser posterior a la fecha de inicio.");
+	        
+	    }
+	    
+	    if (comboBoxPais.getSelectedItem() == null) {
+	        JOptionPane.showMessageDialog(null, "Debe seleccionar un país.");
+	        
+	    }
+
+	    if (textDesc.getText().trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "La descripción del viaje es obligatoria.");
+	    }
+
+	    if (textServ.getText().trim().isEmpty()) {
+	        JOptionPane.showMessageDialog(null, "Debe ingresar los servicios no incluidos.");
+	    }
+
+	    // Si todo es válido, creamos el objeto Viaje
+	    Viaje nuevoviaje = new Viaje();
+	    
+	    Agencia age = ControladorA.agenciaSesion;
+	    nuevoviaje.setNombre(txtViaje.getText());
+	    nuevoviaje.setTipo((String) comboBoxTipo.getSelectedItem());
+	    nuevoviaje.setFechaInc(inicio);
+	    nuevoviaje.setFechaFin(fin);
+	    nuevoviaje.setDuracion(Integer.parseInt(txtDias.getText()));
+	    
+	    String comboresponse = comboBoxPais.getSelectedItem().toString();
+	    String parte = comboresponse.split("-")[0].trim();
+	    
+	    Pais p1 = ControladorA.obtenerPaisId(parte).get(0);
+	    nuevoviaje.setPais(p1);
+	    nuevoviaje.setDescrip(textDesc.getText());
+	    nuevoviaje.setDescServis(textServ.getText());
+	    nuevoviaje.setAgencia(age);
+	    
+	    // Guardamos el viaje
+	    ControladorA.insertarViaje(nuevoviaje);
+
 	}
 }

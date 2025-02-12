@@ -23,8 +23,10 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
 
 import CONTROLADOR.ControladorA;
+import Modelo.Aerolinea;
 import Modelo.Aeropuerto;
 import Modelo.Evento;
+import Modelo.Vuelo;
 
 import javax.swing.event.PopupMenuListener;
 import javax.swing.event.PopupMenuEvent;
@@ -34,6 +36,7 @@ public class NuevoEvento extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtEvento;
+	private JDateChooser datecfechIda;
 	private JComboBox tipoEvento;
 	private JPanel alojamiento;
 	private JPanel vuelo;
@@ -72,6 +75,7 @@ public class NuevoEvento extends JFrame {
 	private JTextField txtPrecioA;
 	private JLabel lblfecSal;
 	private JLabel lblDesc;
+	private ControladorA controlador;
 	private JTextField txtprecio;
 	private JButton btnbuscarViaje;
 	private JButton btnBuscarV;
@@ -206,7 +210,7 @@ public class NuevoEvento extends JFrame {
 		vuelo.add(txtDuracion);
 		txtDuracion.setColumns(10);
 		
-		JDateChooser datecfechIda = new JDateChooser();
+		datecfechIda = new JDateChooser();
 		datecfechIda.setBounds(135, 98, 133, 20);
 		vuelo.add(datecfechIda);
 		
@@ -545,6 +549,14 @@ public class NuevoEvento extends JFrame {
 		String parte = comboresponse.split("-")[0].trim();
 		Aeropuerto a1 = ControladorA.obtenerIdAeropuerto(parte).get(0);
 		
+	}
+	
+	private void insertarVueloIda() {
+		
+		Aeropuerto a1 = new Aeropuerto();
+		Aerolinea aero = new Aerolinea();
+		
+
 	}
 	public void panelVuelo(JPanel vuelo) {
 		

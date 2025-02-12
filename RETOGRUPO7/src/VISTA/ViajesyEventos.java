@@ -42,7 +42,7 @@ public class ViajesyEventos extends JFrame {
 	private JTable tablaviajes;
 	private JTable tablaeventos;
 	private DefaultTableModel modelotablav;
-	
+	private Viaje viajeseleccionado;
 	private static ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	private static ArrayList<Evento> eventos = new ArrayList<Evento>();
 	private static ArrayList<Pais> paises = new ArrayList<Pais>();	
@@ -68,7 +68,7 @@ public class ViajesyEventos extends JFrame {
 	 * Create the frame.
 	 */
 	public ViajesyEventos() {
-		Agencia agencia = ControladorA.obtenerAgenciaId("1").get(0);
+		Agencia agencia = ControladorA.agenciaSesion;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 703, 461);
 		contentPane = new JPanel();
@@ -140,8 +140,7 @@ public class ViajesyEventos extends JFrame {
 		                String idViaje = tablaviajes.getValueAt(row, 0).toString(); 
 		                String nombreViaje = tablaviajes.getValueAt(row, 3).toString();
 		                String descripcion = tablaviajes.getValueAt(row, 4).toString();
-		     
-		                      
+		    
 		                ViajesyEventos.eventos = ControladorA.obtenerEventos(Integer.parseInt(idViaje));
 		        		cargarEventosEnLaTabla();
 
@@ -240,7 +239,7 @@ public class ViajesyEventos extends JFrame {
 		
 		 System.out.println("Cantidad de viajes encontrados: " + viajes.size());
 		    if (viajes.isEmpty()) {
-		        System.out.println("No se encontraron viajes para la agencia: " + agencia.getNombre());
+		        System.out.println("No se encontraron viajes para la agencia: " + agencia.getId());
 		    }
 		modelo.setRowCount(0);
 		for(Viaje v : viajes) {

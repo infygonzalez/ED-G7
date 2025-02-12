@@ -19,6 +19,7 @@ import Modelo.Evento;
 import Modelo.Pais;
 import Modelo.SQLQuerys;
 import Modelo.Viaje;
+import Modelo.Vuelo;
 
 public class ControladorA {
 	
@@ -50,6 +51,7 @@ public class ControladorA {
 	static String sql18 = SQLQuerys.SELECT_ALOJAMIENTO;
 	static String sql19 = SQLQuerys.INSERT_EVENTO;
 	static String sql20 = SQLQuerys.SELECT_VIAJE_ID;
+	static String sql21 = SQLQuerys.INSERT_VUELO;
 	
 	
 public static void insertarViaje(Viaje viaje) {
@@ -85,14 +87,22 @@ public static void insertarViaje(Viaje viaje) {
 	}
 }	
 
-public static void insertarEvento(Evento evento) {
-	ArrayList<Evento> eventos = new ArrayList<Evento>();
+public static void insertarVuelo(Vuelo vuelo) {
 	try {
+		
+		
 		ArrayList<String> listaAtributos = new ArrayList<String>();
-		listaAtributos.add(evento.getId());
-		listaAtributos.add(evento.getNombre());
-		listaAtributos.add(evento.getTipo());
-		listaAtributos.add(String.valueOf(evento.getViaje()));
+		listaAtributos.add(vuelo.getCodV());
+		listaAtributos.add(vuelo.getAerolinea().getCodigoAerolinea());
+		listaAtributos.add(vuelo.getCodDep());
+		listaAtributos.add(vuelo.getId());
+		listaAtributos.add(vuelo.getAeroorigen().getCodigoaero());
+		listaAtributos.add(vuelo.getAerodestino().getCodigoaero());
+		listaAtributos.add(String.valueOf(vuelo.getPrecio()));
+		listaAtributos.add((String) vuelo.getFecSal().toString());
+		listaAtributos.add(vuelo.getHora());
+		listaAtributos.add(vuelo.getDuracion());
+		
 		MySqlConnector.ejecutarSentenciaUpdate(sql18, listaAtributos);
 	}catch(SQLException e) {
 		e.printStackTrace();
@@ -213,15 +223,16 @@ public boolean autenticarUsuario(String usuario, String contraseña) {
 		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql13, listaAtributos);
 		Agencia a1 = new Agencia();
 		if(r1.next()) {
-			while(r1.next()) {
-				a1.setId(r1.getString("idAgencia"));
-				a1.setNombre("nombre");
-				a1.setLogo(r1.getString("logo"));
-				a1.setColor("color_de_marca");
-				a1.setTipoAgencia("tipo_de_agencia");
-				a1.setEmpleados("numero_de_empleados");
-			}
+			
+			a1.setId(r1.getString("idAgencia"));
+			a1.setNombre("nombre");
+			a1.setLogo(r1.getString("logo"));
+			a1.setColor("color_de_marca");
+			a1.setTipoAgencia("tipo_de_agencia");
+			a1.setEmpleados("numero_de_empleados");
+				
 			agenciaSesion = a1;
+			System.out.println("Id agencia " + a1.getId());
 			return true;
 		}
 		else {

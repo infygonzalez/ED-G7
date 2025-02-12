@@ -12,6 +12,8 @@ public class Vuelo extends Evento {
 	private Aeropuerto aeroorigen;
 	private Vuelo vueloida;
 	private double precio;
+	private Aerolinea aerolinea;
+	private String codDep;
 	
 	public Vuelo() {
 		
@@ -19,7 +21,7 @@ public class Vuelo extends Evento {
 
 	
 	public Vuelo(String id, String nombre, String tipo, int idviaje, double precio, String codV, Date fecSal,
-			String hora, String duracion, Aeropuerto aerodestino, Aeropuerto aeroorigen, Vuelo vueloida) {
+			String hora, String duracion, Aeropuerto aerodestino, Aeropuerto aeroorigen, Vuelo vueloida, Aerolinea aerolinea, String codDep) {
 		super(id, nombre, tipo, idviaje);
 		this.codV = codV;
 		this.fecSal = fecSal;
@@ -29,7 +31,30 @@ public class Vuelo extends Evento {
 		this.aeroorigen = aeroorigen;
 		this.vueloida = vueloida;
 		this.precio = precio;
+		this.aerolinea = aerolinea;
+		this.codDep = codDep;
 	}
+
+	
+	public String getCodDep() {
+		return codDep;
+	}
+
+
+	public void setCodDep(String codDep) {
+		this.codDep = codDep;
+	}
+
+
+	public Aerolinea getAerolinea() {
+		return aerolinea;
+	}
+
+
+	public void setAerolinea(Aerolinea aerolinea) {
+		this.aerolinea = aerolinea;
+	}
+
 
 	public Aeropuerto getAerodestino() {
 		return aerodestino;
@@ -109,7 +134,7 @@ public class Vuelo extends Evento {
 	public String toString() {
 		return "Vuelo [codV=" + codV + ", fecSal=" + fecSal + ", hora=" + hora + ", duracion=" + duracion
 				+ ", aerodestino=" + aerodestino + ", aeroorigen=" + aeroorigen + ", vueloida=" + vueloida + ", precio="
-				+ precio + "]";
+				+ precio + ", aerolinea=" + aerolinea + ", codDep=" + codDep + "]";
 	}
 
 
@@ -117,7 +142,8 @@ public class Vuelo extends Evento {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(aerodestino, aeroorigen, codV, duracion, fecSal, hora, precio, vueloida);
+		result = prime * result + Objects.hash(aerodestino, aerolinea, aeroorigen, codDep, codV, duracion, fecSal, hora,
+				precio, vueloida);
 		return result;
 	}
 
@@ -131,7 +157,8 @@ public class Vuelo extends Evento {
 		if (getClass() != obj.getClass())
 			return false;
 		Vuelo other = (Vuelo) obj;
-		return Objects.equals(aerodestino, other.aerodestino) && Objects.equals(aeroorigen, other.aeroorigen)
+		return Objects.equals(aerodestino, other.aerodestino) && Objects.equals(aerolinea, other.aerolinea)
+				&& Objects.equals(aeroorigen, other.aeroorigen) && Objects.equals(codDep, other.codDep)
 				&& Objects.equals(codV, other.codV) && Objects.equals(duracion, other.duracion)
 				&& Objects.equals(fecSal, other.fecSal) && Objects.equals(hora, other.hora)
 				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
@@ -139,6 +166,8 @@ public class Vuelo extends Evento {
 	}
 
 
+	
+	
 	
 
 
