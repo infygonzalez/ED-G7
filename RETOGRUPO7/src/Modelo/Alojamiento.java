@@ -10,6 +10,7 @@ public class Alojamiento extends Evento{
 	private Date fecEnt;
 	private Date fecSal;
 	private String tipoh;
+	private double precio;
 	
 	
 	public Alojamiento() {
@@ -18,7 +19,7 @@ public class Alojamiento extends Evento{
 	
 	public Alojamiento(String id, String nombre, String tipo, int idviaje, double precio, String nombreh, String ciudad,
 			Date fecEnt, Date fecSal, String tipoh) {
-		super(id, nombre, tipo, idviaje, precio);
+		super(id, nombre, tipo, idviaje);
 		this.nombreh = nombreh;
 		this.ciudad = ciudad;
 		this.fecEnt = fecEnt;
@@ -27,6 +28,14 @@ public class Alojamiento extends Evento{
 	}
 
 
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 
 	public String getNombreh() {
 		return nombreh;
@@ -58,18 +67,18 @@ public class Alojamiento extends Evento{
 	public void setTipoh(String tipoh) {
 		this.tipoh = tipoh;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Alojamiento [nombreh=" + nombreh + ", ciudad=" + ciudad + ", fecEnt=" + fecEnt
-				+ ", fecSal=" + fecSal + ", tipoh=" + tipoh + "]";
+		return "Alojamiento [nombreh=" + nombreh + ", ciudad=" + ciudad + ", fecEnt=" + fecEnt + ", fecSal=" + fecSal
+				+ ", tipoh=" + tipoh + ", precio=" + precio + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(ciudad, fecEnt, fecSal, nombreh, tipoh);
+		result = prime * result + Objects.hash(ciudad, fecEnt, fecSal, nombreh, precio, tipoh);
 		return result;
 	}
 
@@ -84,6 +93,7 @@ public class Alojamiento extends Evento{
 		Alojamiento other = (Alojamiento) obj;
 		return Objects.equals(ciudad, other.ciudad) && Objects.equals(fecEnt, other.fecEnt)
 				&& Objects.equals(fecSal, other.fecSal) && Objects.equals(nombreh, other.nombreh)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
 				&& Objects.equals(tipoh, other.tipoh);
 	}
 	

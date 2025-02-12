@@ -7,6 +7,7 @@ public class Otros extends Evento{
 	
 	private Date fecha;
 	private String descripcion;
+	private double precio;
 	
 	public Otros() {
 		
@@ -16,10 +17,22 @@ public class Otros extends Evento{
 
 	public Otros(String id, String nombre, String tipo, int idviaje, double precio, Date fecha,
 			String descripcion) {
-		super(id, nombre, tipo, idviaje, precio);
+		super(id, nombre, tipo, idviaje);
 		this.fecha = fecha;
 		this.descripcion = descripcion;
 	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+
 
 	public Date getFecha() {
 		return fecha;
@@ -37,18 +50,24 @@ public class Otros extends Evento{
 		this.descripcion = descripcion;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Otros [fecha=" + fecha + ", descripcion=" + descripcion + "]";
+		return "Otros [fecha=" + fecha + ", descripcion=" + descripcion + ", precio=" + precio + "]";
 	}
+
+
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(descripcion, fecha);
+		result = prime * result + Objects.hash(descripcion, fecha, precio);
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -59,8 +78,10 @@ public class Otros extends Evento{
 		if (getClass() != obj.getClass())
 			return false;
 		Otros other = (Otros) obj;
-		return Objects.equals(descripcion, other.descripcion) && Objects.equals(fecha, other.fecha);
+		return Objects.equals(descripcion, other.descripcion) && Objects.equals(fecha, other.fecha)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio);
 	}
+
 	
 	
 	

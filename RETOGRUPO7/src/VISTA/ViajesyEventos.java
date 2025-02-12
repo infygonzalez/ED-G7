@@ -270,7 +270,6 @@ public class ViajesyEventos extends JFrame {
 			modelo.addRow(new Object[] {
 					v.getId(),
 					v.getNombre(),
-					v.getPrecio(),
 					v.getTipo(),
 			});
 		}

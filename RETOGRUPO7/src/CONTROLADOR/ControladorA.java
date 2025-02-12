@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 import Connector.MySqlConnector;
+import Modelo.Aeropuerto;
 import Modelo.Agencia;
+import Modelo.Alojamiento;
 import Modelo.Dbutils;
 import Modelo.Evento;
 import Modelo.Pais;
@@ -43,8 +45,11 @@ public class ControladorA {
 	static String sql13 = SQLQuerys.HACER_LOGIN;
 	static String sql14 = SQLQuerys.SELECT_NOMBRE_PAIS;
 	static String sql15 = SQLQuerys.SELECT_CODPAIS;
-	
-	
+	static String sql16 = SQLQuerys.SELECT_AEROPUERTO;
+	static String sql17 = SQLQuerys.SELECT_CODAERO;
+	static String sql18 = SQLQuerys.SELECT_ALOJAMIENTO;
+	static String sql19 = SQLQuerys.INSERT_EVENTO;
+	static String sql20 = SQLQuerys.SELECT_VIAJE_ID;
 	
 	
 public static void insertarViaje(Viaje viaje) {
@@ -79,6 +84,20 @@ public static void insertarViaje(Viaje viaje) {
 		e.printStackTrace();
 	}
 }	
+
+public static void insertarEvento(Evento evento) {
+	ArrayList<Evento> eventos = new ArrayList<Evento>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(evento.getId());
+		listaAtributos.add(evento.getNombre());
+		listaAtributos.add(evento.getTipo());
+		listaAtributos.add(String.valueOf(evento.getViaje()));
+		MySqlConnector.ejecutarSentenciaUpdate(sql18, listaAtributos);
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+}
 	
 	
 	
@@ -105,8 +124,63 @@ public static ArrayList<Pais> obtenerPaisId(String id){
 	return paises;
 }	
 	
+public static ArrayList<Aeropuerto> obtenerIdAeropuerto(String id){
+	ArrayList<Aeropuerto> aero = new ArrayList<Aeropuerto>();
 	
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(id);
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql17, listaAtributos);
+		
+	while(r1.next()) {
+		Aeropuerto a1 = new Aeropuerto();
+		a1.setCodigoaero(r1.getString("CodAeropuerto"));
+		a1.setNombre(r1.getString("nombre_aeropuerto"));
+		aero.add(a1);
+	}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	return aero;
+}	
 	
+
+public static ArrayList<Viaje> obtenerViajeId(String id, ArrayList<Pais> paises, Agencia agencia){
+	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(id);
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql20, listaAtributos);
+	
+	while(r1.next()) {
+		Viaje v1 = new Viaje();
+		v1.setId(r1.getString("idViajes"));
+		v1.setNombre(r1.getString("nombre_viaje"));
+		v1.setDescrip(r1.getString("descripcion"));
+		v1.setTipo(r1.getString("tipo_de_viaje"));
+		v1.setFechaInc(r1.getDate("fecha_inicio"));
+		v1.setFechaFin(r1.getDate("fecha_fin"));
+		v1.setDuracion(Integer.parseInt(r1.getString("duracion_viaje")));
+		v1.setDescServis(r1.getString("servicios_no_incluidos"));
+		
+		String codigoPais = r1.getString("codPais");
+		
+		for(Pais pais : paises) {
+			if(pais.getCodPais().equals(codigoPais)) {
+				v1.setPais(pais);
+			}
+		}
+		String idAgencia = r1.getString("idAgencia");
+		if(agencia.getId().equals(idAgencia)) {
+			v1.setAgencia(agencia);
+		}	
+		viajes.add(v1);
+	}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	return viajes;
+}
 public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	
 	ArrayList<Agencia> agencias = new ArrayList<Agencia>();
@@ -250,6 +324,26 @@ public static ArrayList<Pais> mostrarNombrePais(){
 		
 		return pais;
 }
+
+public static ArrayList<Aeropuerto> mostrarNombreAeropuerto(){
+	ArrayList<Aeropuerto> aero = new ArrayList<Aeropuerto>();
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql16, listaAtributos);
+		while (r1.next()) {
+			Aeropuerto a1 = new Aeropuerto();
+			a1.setCodigoaero(r1.getString("CodAeropuerto"));
+			a1.setNombre(r1.getString("nombre_aeropuerto"));
+			aero.add(a1);
+		}
+		System.out.println("Cantidad de aeropuertos encontrados: " + aero.size());
+	}catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return aero;
+}
+
 public static ArrayList<Viaje> buscarViajes(ArrayList<Pais> paises, Agencia agencia){
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	
@@ -297,6 +391,20 @@ public static void insertarAgencia(Agencia agencia) {
 	a1.insertarAgencia(agencia);
 }
 
+public static ArrayList<Alojamiento> mostrarAlojamientos(Viaje viaje) {
+	ArrayList<Alojamiento> a1 = new ArrayList<Alojamiento>();
+	ArrayList<String> listaAtributos = new ArrayList<String>();
+	listaAtributos.add(viaje.getId());
+	try {
+		ResultSet r1 = MySqlConnector.ejecutarSentencia(sql18, listaAtributos);
+	while(r1.next()) {
+		Alojamiento alojamiento = new Alojamiento();
+	}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+	return a1;
+}
 
 public static ArrayList<Evento> obtenerEventos(int idViaje) {
 	ArrayList<Evento> v1 = new ArrayList<Evento>();

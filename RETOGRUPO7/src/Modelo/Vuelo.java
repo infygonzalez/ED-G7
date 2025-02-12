@@ -11,6 +11,7 @@ public class Vuelo extends Evento {
 	private Aeropuerto aerodestino;
 	private Aeropuerto aeroorigen;
 	private Vuelo vueloida;
+	private double precio;
 	
 	public Vuelo() {
 		
@@ -19,7 +20,7 @@ public class Vuelo extends Evento {
 	
 	public Vuelo(String id, String nombre, String tipo, int idviaje, double precio, String codV, Date fecSal,
 			String hora, String duracion, Aeropuerto aerodestino, Aeropuerto aeroorigen, Vuelo vueloida) {
-		super(id, nombre, tipo, idviaje, precio);
+		super(id, nombre, tipo, idviaje);
 		this.codV = codV;
 		this.fecSal = fecSal;
 		this.hora = hora;
@@ -27,6 +28,7 @@ public class Vuelo extends Evento {
 		this.aerodestino = aerodestino;
 		this.aeroorigen = aeroorigen;
 		this.vueloida = vueloida;
+		this.precio = precio;
 	}
 
 	public Aeropuerto getAerodestino() {
@@ -93,10 +95,21 @@ public class Vuelo extends Evento {
 	}
 
 
+	public double getPrecio() {
+		return precio;
+	}
+
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Vuelo [codV=" + codV + ", fecSal=" + fecSal + ", hora=" + hora + ", duracion=" + duracion
-				+ ", aerodestino=" + aerodestino + ", aeroorigen=" + aeroorigen + ", vueloida=" + vueloida + "]";
+				+ ", aerodestino=" + aerodestino + ", aeroorigen=" + aeroorigen + ", vueloida=" + vueloida + ", precio="
+				+ precio + "]";
 	}
 
 
@@ -104,7 +117,7 @@ public class Vuelo extends Evento {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(aerodestino, aeroorigen, codV, duracion, fecSal, hora, vueloida);
+		result = prime * result + Objects.hash(aerodestino, aeroorigen, codV, duracion, fecSal, hora, precio, vueloida);
 		return result;
 	}
 
@@ -121,8 +134,12 @@ public class Vuelo extends Evento {
 		return Objects.equals(aerodestino, other.aerodestino) && Objects.equals(aeroorigen, other.aeroorigen)
 				&& Objects.equals(codV, other.codV) && Objects.equals(duracion, other.duracion)
 				&& Objects.equals(fecSal, other.fecSal) && Objects.equals(hora, other.hora)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
 				&& Objects.equals(vueloida, other.vueloida);
 	}
+
+
+	
 
 
 
