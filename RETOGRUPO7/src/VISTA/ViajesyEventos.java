@@ -147,7 +147,7 @@ public class ViajesyEventos extends JFrame {
 		            int row = tablaviajes.getSelectedRow();
 
 		            if (row != -1) { 
-		                String idViaje = tablaviajes.getValueAt(row, 0).toString(); 
+		                String idViaje = tablaviajes.getValueAt(row, 6).toString(); 
 		                String nombreViaje = tablaviajes.getValueAt(row, 3).toString();
 		                String descripcion = tablaviajes.getValueAt(row, 4).toString();
 		    
@@ -167,13 +167,13 @@ public class ViajesyEventos extends JFrame {
 		
 		//**********************************
 		
-		String[] columnas = {"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes"};
+		String[] columnas = {"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes", "idViaje"};
 		modelotablav = new DefaultTableModel(columnas, 0);
 		tablaviajes.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-					"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes"
+					"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes","idViaje"
 			}
 		));
 		
@@ -265,7 +265,8 @@ public class ViajesyEventos extends JFrame {
 					v.getFechaInc(),
 					v.getFechaFin(),
 					v.getDuracion(),
-					v.getPais().getNombre()
+					v.getPais().getNombre(),
+					v.getId()
 			});
 		}
 	}
@@ -301,6 +302,7 @@ public class ViajesyEventos extends JFrame {
 	    String fechaInicioStr = modeloviaje.getValueAt(filaSeleccionada, 2).toString(); // Fecha como String
 	    String fechaFinStr = modeloviaje.getValueAt(filaSeleccionada, 3).toString();   // Fecha como String
 	    String paisDestino =  modeloviaje.getValueAt(filaSeleccionada, 5).toString();
+	    String idViaje = modeloviaje.getValueAt(filaSeleccionada, 6).toString();
 
 	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // Formato de la fecha
 	    formato.setLenient(false); // No permite fechas inválidas
@@ -334,8 +336,8 @@ public class ViajesyEventos extends JFrame {
 	        DefaultTableModel modelEventos = (DefaultTableModel) tablaeventos.getModel();
 	        for (int i = 0; i < modelEventos.getRowCount(); i++) {
 	            String nombreEvento = (String) modelEventos.getValueAt(i, 1);
-	            String tipoEvento = (String) modelEventos.getValueAt(i, 2);
-	            double precioEvento = Double.parseDouble(modelEventos.getValueAt(i, 3).toString());
+	            String tipoEvento = (String) modelEventos.getValueAt(i, 3);
+	            double precioEvento = Double.parseDouble(modelEventos.getValueAt(i, 2).toString());
 	            oferta.append("   ➤ " + nombreEvento + " (" + tipoEvento + ") - 💰 Precio: " + precioEvento + "€\n");
 	        }
 
