@@ -56,18 +56,6 @@ public class ViajesyEventos extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ViajesyEventos frame = new ViajesyEventos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -132,6 +120,9 @@ public class ViajesyEventos extends JFrame {
 		btnNewButton_3.setFont(new Font("Century Gothic", Font.BOLD, 11));
 		btnNewButton_3.setBounds(350, 362, 128, 23);
 		contentPane.add(btnNewButton_3);
+		
+		
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(94, 55, 380, 103);

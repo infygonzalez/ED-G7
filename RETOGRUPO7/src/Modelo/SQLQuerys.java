@@ -22,6 +22,7 @@ public class SQLQuerys {
 	public static final String SELECT_AEROPUERTO = "select * from Aeropuerto";
 	public static final String SELECT_CODAERO ="select * from Aeropuerto where CodAeropuerto =?";
 	public static final String SELECT_ALOJAMIENTO = "select * from Alojamiento where viaje_id = ?";
+	public static final String SELECT_LOGO_COLOR = "select logo, color_de_marca from Agencia where idAgencia =?";
 	//INSERTS
 	public static final String INSERT_AGENCIA = "insert into Agencia(nombre, logo, color_de_marca, numero_de_empleados, tipo_de_agencia, contraseña) values ('";
 	public static final String INSERT_VIAJE = "insert into Viajes(idViajes, idAgencia, CodPais, nombre_viaje, tipo_de_viaje, fecha_inicio, fecha_fin, duracion_viaje, pais_destino, descripcion, servicios_no_incluidos) values(?,?,?,?,?,?,?,?,?,?,?)";

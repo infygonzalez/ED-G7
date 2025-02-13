@@ -1,5 +1,9 @@
 package CONTROLADOR;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +12,9 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 import Connector.MySqlConnector;
@@ -55,7 +62,66 @@ public class ControladorA {
 	static String sql21 = SQLQuerys.INSERT_VUELO;
 	static String sql22 = SQLQuerys.INSERT_ALOJAMIENTO;
 	static String sql23 = SQLQuerys.INSERT_OTROS;
+	static String sql24 = SQLQuerys.SELECT_LOGO_COLOR;
 	
+	
+	
+	public static void logoconColor(JPanel panelLogo, JPanel panelColor, int idAgencia) {
+		
+		if (panelColor == null || panelLogo == null) {
+            System.err.println("Error: Uno de los paneles es null.");
+            return;
+		}
+		try {
+			ArrayList<String> listaAtributos = new ArrayList<String>();
+			listaAtributos.add(String.valueOf(idAgencia));
+			ResultSet r1 = MySqlConnector.ejecutarSentencia(sql24, listaAtributos);
+			
+		while(r1.next()) {
+			String colorHex = r1.getString("color_de_marca");
+			Color colorseleccionado = convertirColor(colorHex);
+			panelColor.setBackground(colorseleccionado);
+			
+			
+			
+			String logo = r1.getString("logo");
+			if(logo != null & ! logo.isEmpty()) {
+				ImageIcon logoIcon = convertirImg(logo);
+				if(logoIcon != null) {
+					JLabel labellogo = new JLabel(logoIcon);
+					panelLogo.add(labellogo);				}
+			}
+			
+			
+}
+		System.out.println("colorylogo guardados correctamente para la agencia " + idAgencia);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	public static ImageIcon convertirImg(String logo) {
+		// TODO Auto-generated method stub
+		try {
+            URL url = new URL(logo);
+            ImageIcon imageIcon = new ImageIcon(url);
+            Image scaledImage = imageIcon.getImage().getScaledInstance(114, 96, Image.SCALE_SMOOTH);
+            return new ImageIcon(scaledImage);
+        } catch (MalformedURLException e) {
+            System.err.println("URL inválida: " + logo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+
+	}
+	public static Color convertirColor(String colorHex) {
+		// TODO Auto-generated method stub
+		return Color.decode(colorHex);
+	}
 	
 public static void insertarViaje(Viaje viaje) {
 	ArrayList<Viaje> viajes = new ArrayList<Viaje>();
@@ -253,7 +319,7 @@ public static ArrayList<Agencia> obtenerAgenciaId(String id) {
 	return agencias;
 	}
 
-public boolean autenticarUsuario(String usuario, String contraseña) {
+public static boolean autenticarUsuario(String usuario, String contraseña) {
 	ArrayList<String> listaAtributos = new ArrayList<String>();
 	listaAtributos.add(usuario);
 	listaAtributos.add(contraseña);
