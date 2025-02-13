@@ -16,6 +16,7 @@ import Modelo.Agencia;
 import Modelo.Alojamiento;
 import Modelo.Dbutils;
 import Modelo.Evento;
+import Modelo.Otros;
 import Modelo.Pais;
 import Modelo.SQLQuerys;
 import Modelo.Viaje;
@@ -52,6 +53,8 @@ public class ControladorA {
 	static String sql19 = SQLQuerys.INSERT_EVENTO;
 	static String sql20 = SQLQuerys.SELECT_VIAJE_ID;
 	static String sql21 = SQLQuerys.INSERT_VUELO;
+	static String sql22 = SQLQuerys.INSERT_ALOJAMIENTO;
+	static String sql23 = SQLQuerys.INSERT_OTROS;
 	
 	
 public static void insertarViaje(Viaje viaje) {
@@ -103,12 +106,47 @@ public static void insertarVuelo(Vuelo vuelo) {
 		listaAtributos.add(vuelo.getHora());
 		listaAtributos.add(vuelo.getDuracion());
 		
-		MySqlConnector.ejecutarSentenciaUpdate(sql18, listaAtributos);
+		MySqlConnector.ejecutarSentenciaUpdate(sql21, listaAtributos);
 	}catch(SQLException e) {
 		e.printStackTrace();
 	}
 }
 	
+public static void insertarAlojamiento (Alojamiento alojamiento) {
+	try {
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(alojamiento.getId());
+		listaAtributos.add(String.valueOf(alojamiento.getViaje()));
+		listaAtributos.add(alojamiento.getNombreh());
+		listaAtributos.add(alojamiento.getCiudad());
+		listaAtributos.add(String.valueOf(alojamiento.getPrecio()));
+		listaAtributos.add((String) alojamiento.getFecEnt().toString());
+		listaAtributos.add((String) alojamiento.getFecSal().toString());
+		listaAtributos.add(alojamiento.getTipoh());
+		
+		MySqlConnector.ejecutarSentenciaUpdate(sql22, listaAtributos);
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+}
+
+public static void insertarOtros (Otros otros) {
+	try {
+		
+		ArrayList<String> listaAtributos = new ArrayList<String>();
+		listaAtributos.add(otros.getId());
+		listaAtributos.add(String.valueOf(otros.getViaje()));
+		listaAtributos.add(otros.getNombre());
+		listaAtributos.add((String) otros.getFecha().toString());
+		listaAtributos.add(otros.getDescripcion());
+		listaAtributos.add(String.valueOf(otros.getPrecio()));
+		
+		MySqlConnector.ejecutarSentenciaUpdate(sql23, listaAtributos);
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}
+}
 	
 	
 	
@@ -429,6 +467,7 @@ public static ArrayList<Evento> obtenerEventos(int idViaje) {
 			evento.setViaje(Integer.parseInt(r1.getString("idViajes")));
 			evento.setNombre(r1.getString("nombre_evento"));
 			evento.setTipo(r1.getString("tipo_evento"));
+			evento.setPrecio(r1.getDouble("precio"));
 			v1.add(evento);
 		}
 	} catch (SQLException e) {

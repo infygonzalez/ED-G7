@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
@@ -30,6 +32,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -46,6 +50,7 @@ public class ViajesyEventos extends JFrame {
 	private static ArrayList<Viaje> viajes = new ArrayList<Viaje>();
 	private static ArrayList<Evento> eventos = new ArrayList<Evento>();
 	private static ArrayList<Pais> paises = new ArrayList<Pais>();	
+	private DefaultTableModel modeloviaje;
 	// -----------------------------------------------------------
 
 	/**
@@ -108,10 +113,15 @@ public class ViajesyEventos extends JFrame {
 		btnNewButton_1.setBounds(559, 269, 128, 23);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Generar Oferta");
-		btnNewButton_2.setFont(new Font("Century Gothic", Font.BOLD, 11));
-		btnNewButton_2.setBounds(94, 362, 128, 23);
-		contentPane.add(btnNewButton_2);
+		JButton botonoferta = new JButton("Generar Oferta");
+		botonoferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				generarOfertaCliente();
+			}
+		});
+		botonoferta.setFont(new Font("Century Gothic", Font.BOLD, 11));
+		botonoferta.setBounds(94, 362, 128, 23);
+		contentPane.add(botonoferta);
 		
 		JButton btnNewButton_3 = new JButton("Desconectar");
 		btnNewButton_3.addActionListener(new ActionListener() {
@@ -157,9 +167,15 @@ public class ViajesyEventos extends JFrame {
 		
 		//**********************************
 		
-		String[] columnas = {"ID", "IdAgencia", "codPais", "Nombre", "Descripcion", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes","ServiciosNoInc"};
+		String[] columnas = {"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes"};
 		modelotablav = new DefaultTableModel(columnas, 0);
-		tablaviajes.setModel(modelotablav);
+		tablaviajes.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+					"Nombre", "TipoViaje", "Fecha Ini", "Fecha Fin", "Duracion","PaisDes"
+			}
+		));
 		
 		cargarViajesEnLaTabla(agencia);
 		
@@ -233,7 +249,7 @@ public class ViajesyEventos extends JFrame {
 	}
 	
 	public void cargarViajesEnLaTabla(Agencia agencia) {
-		DefaultTableModel modelo = (DefaultTableModel) tablaviajes.getModel();
+		modeloviaje = (DefaultTableModel) tablaviajes.getModel();
 		paises = ControladorA.mostrarPaises();
 		viajes = ControladorA.buscarViajes(paises, agencia);
 		
@@ -241,14 +257,10 @@ public class ViajesyEventos extends JFrame {
 		    if (viajes.isEmpty()) {
 		        System.out.println("No se encontraron viajes para la agencia: " + agencia.getId());
 		    }
-		modelo.setRowCount(0);
+		modeloviaje.setRowCount(0);
 		for(Viaje v : viajes) {
-			modelo.addRow(new Object[] {
-					v.getId(),
-					v.getAgencia().getNombre(),
-					v.getPais().getCodPais(),
+			modeloviaje.addRow(new Object[] {
 					v.getNombre(),
-					v.getDescrip(),
 					v.getTipo(),
 					v.getFechaInc(),
 					v.getFechaFin(),
@@ -269,8 +281,87 @@ public class ViajesyEventos extends JFrame {
 			modelo.addRow(new Object[] {
 					v.getId(),
 					v.getNombre(),
+					v.getPrecio(),
 					v.getTipo(),
 			});
 		}
 	}
+	
+	
+	private void generarOfertaCliente() {
+	    int filaSeleccionada = tablaviajes.getSelectedRow();
+	    if (filaSeleccionada == -1) {
+	        JOptionPane.showMessageDialog(null, "Por favor, selecciona un viaje para generar la oferta.");
+	        return;
+	    }
+
+	    // Obtener los datos del viaje seleccionado
+	    String nombreViaje = modeloviaje.getValueAt(filaSeleccionada, 0).toString();
+	    String tipoViaje =  modeloviaje.getValueAt(filaSeleccionada, 1).toString();
+	    String fechaInicioStr = modeloviaje.getValueAt(filaSeleccionada, 2).toString(); // Fecha como String
+	    String fechaFinStr = modeloviaje.getValueAt(filaSeleccionada, 3).toString();   // Fecha como String
+	    String paisDestino =  modeloviaje.getValueAt(filaSeleccionada, 5).toString();
+
+	    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); // Formato de la fecha
+	    formato.setLenient(false); // No permite fechas inválidas
+
+	    try {
+	        java.util.Date fechaInicioUtil = formato.parse(fechaInicioStr);
+	        java.util.Date fechaFinUtil = formato.parse(fechaFinStr);
+
+	        // Convertir a java.sql.Date (opcional si necesitas usar SQL)
+	        java.sql.Date fechaInicio = new java.sql.Date(fechaInicioUtil.getTime());
+	        java.sql.Date fechaFin = new java.sql.Date(fechaFinUtil.getTime());
+
+	        // Calcular la duración del viaje en días
+	        long diff = fechaFin.getTime() - fechaInicio.getTime();
+	        int duracion = (int) (diff / (1000 * 60 * 60 * 24)); // Convertir de milisegundos a días
+
+	        // Construir el contenido de la oferta
+	        StringBuilder oferta = new StringBuilder();
+	        oferta.append("*************************************\n");
+	        oferta.append("       *** OFERTA DE VIAJE ***       \n");
+	        oferta.append("*************************************\n\n");
+	        oferta.append("📌 Nombre del Viaje: " + nombreViaje + "\n");
+	        oferta.append("✈ Tipo de Viaje: " + tipoViaje + "\n");
+	        oferta.append("📅 Duración: " + duracion + " días\n");
+	        oferta.append("📆 Fecha de Inicio: " + fechaInicioStr + "\n");
+	        oferta.append("📆 Fecha de Fin: " + fechaFinStr + "\n");
+	        oferta.append("🌍 Destino: " + paisDestino + "\n\n");
+	        oferta.append("🎭 Eventos incluidos:\n");
+
+	        // Obtener los eventos relacionados con el viaje
+	        DefaultTableModel modelEventos = (DefaultTableModel) tablaeventos.getModel();
+	        for (int i = 0; i < modelEventos.getRowCount(); i++) {
+	            String nombreEvento = (String) modelEventos.getValueAt(i, 1);
+	            String tipoEvento = (String) modelEventos.getValueAt(i, 2);
+	            double precioEvento = Double.parseDouble(modelEventos.getValueAt(i, 3).toString());
+	            oferta.append("   ➤ " + nombreEvento + " (" + tipoEvento + ") - 💰 Precio: " + precioEvento + "€\n");
+	        }
+
+	        oferta.append("\n-------------------------------------\n");
+	        oferta.append("✅ ¡No dejes pasar esta oportunidad!\n");
+	        oferta.append("-------------------------------------\n");
+
+	        try {
+	            // Guardar la oferta en un archivo de texto
+	            FileWriter writer = new FileWriter("Oferta_" + nombreViaje.replace(" ", "_") + ".txt");
+	            writer.write(oferta.toString());
+	            writer.close();
+	            JOptionPane.showMessageDialog(null, "✅ Oferta generada exitosamente en un archivo de texto.");
+	        } catch (IOException e) {
+	            JOptionPane.showMessageDialog(null, "❌ Error al generar la oferta: " + e.getMessage());
+	            e.printStackTrace();
+	        }
+
+	    } catch (ParseException e) {
+	        JOptionPane.showMessageDialog(null, "❌ Error al convertir las fechas. Verifica el formato (yyyy-MM-dd).");
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	
+	
+	
 }

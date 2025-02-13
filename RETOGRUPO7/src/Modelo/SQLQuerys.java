@@ -27,6 +27,8 @@ public class SQLQuerys {
 	public static final String INSERT_VIAJE = "insert into Viajes(idViajes, idAgencia, CodPais, nombre_viaje, tipo_de_viaje, fecha_inicio, fecha_fin, duracion_viaje, pais_destino, descripcion, servicios_no_incluidos) values(?,?,?,?,?,?,?,?,?,?,?)";
 	public static final String INSERT_EVENTO = "insert into Evento(idEvento, idViajes, nombre_evento, tipo_evento)";
 	public static final String INSERT_VUELO = "insert into Vuelos(CodVuelo, CodAerolinea, CodDependencia, idEvento, CodAeropuerto,codigo_aeropuerto_origen, aeropuerto_origen, codigo_aeropuerto_destino, aeropuerto_destino, precio, fecha_salida, horario_salida, duracion_viaje) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String INSERT_ALOJAMIENTO = "insert into Alojamiento (CodEvento, viaje_id, nombre_hotel, ciudad, precio, fecha_entrada, fecha_salida, tipo_habitacion) values (?,?,?,?,?,?,?,?)";
+	public static final String INSERT_OTROS = "insert into Otros (CdEvento, viaje_id, nombre_ fecha, descripcion, precio) values (?,?,?,?,?,?)";
 	public static final String SEPARATOR = "', '";
 	public static final String END_BLOCK = "')";
 	

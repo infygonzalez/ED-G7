@@ -8,19 +8,37 @@ public class Evento {
 	private String nombre;
 	private String tipo;
 	private int idviaje;
+	private double precio;
 	
 	
 	public Evento() {
 		
 	}
 
-	public Evento(String id, String nombre, String tipo, int idViaje) {
+	public Evento(String id, String nombre, String tipo, int idViaje, double precios) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tipo = tipo;
 		this.idviaje = idViaje;
+		this.precio = precio;
 	}
 
+
+	public int getIdviaje() {
+		return idviaje;
+	}
+
+	public void setIdviaje(int idviaje) {
+		this.idviaje = idviaje;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
 
 	public String getId() {
 		return id;
@@ -59,16 +77,17 @@ public class Evento {
 		this.idviaje = viaje;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", idviaje=" + idviaje + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Evento [id=").append(id).append(", nombre=").append(nombre).append(", tipo=").append(tipo)
+				.append(", idviaje=").append(idviaje).append(", precio=").append(precio).append("]");
+		return builder.toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nombre, tipo, idviaje);
+		return Objects.hash(id, idviaje, nombre, precio, tipo);
 	}
 
 	@Override
@@ -80,10 +99,12 @@ public class Evento {
 		if (getClass() != obj.getClass())
 			return false;
 		Evento other = (Evento) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(tipo, other.tipo) && Objects.equals(idviaje, other.idviaje);
+		return Objects.equals(id, other.id) && idviaje == other.idviaje && Objects.equals(nombre, other.nombre)
+				&& Double.doubleToLongBits(precio) == Double.doubleToLongBits(other.precio)
+				&& Objects.equals(tipo, other.tipo);
 	}
 
+	
 
 	
 	
