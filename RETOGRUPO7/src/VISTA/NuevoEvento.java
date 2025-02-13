@@ -1,5 +1,6 @@
 package VISTA;
 
+import java.awt.Desktop;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,11 +14,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import com.toedter.calendar.JDateChooser;
@@ -215,6 +220,20 @@ public class NuevoEvento extends JFrame {
 		vuelo.add(datecfechIda);
 		
 		btnbuscarViaje = new JButton("Buscar Viaje");
+		btnbuscarViaje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://www.skyscanner.es/"));
+				} catch ( URISyntaxException ez ) {
+					ez.printStackTrace();
+					JOptionPane.showMessageDialog(null, "No se pudo abrir el navegador.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnbuscarViaje.setBounds(503, 81, 140, 55);
 		vuelo.add(btnbuscarViaje);
 		
@@ -494,6 +513,17 @@ public class NuevoEvento extends JFrame {
 		alojamiento.add(datecfecSal);
 		
 		JButton btnBuscarAlo = new JButton("Buscar Alojamiento");
+		btnBuscarAlo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Desktop.getDesktop().browse(new URI("https://www.booking.com"));
+				} catch (IOException | URISyntaxException ez) {
+					ez.printStackTrace();
+					JOptionPane.showMessageDialog(null, "No se pudo abrir el navegador.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnBuscarAlo.setBounds(358, 60, 148, 47);
 		alojamiento.add(btnBuscarAlo);
 		otros.setVisible(false);
