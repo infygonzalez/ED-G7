@@ -1,0 +1,237 @@
+* {
+    padding: 0;
+    margin: 0 ;
+    box-sizing: border-box;
+}
+
+/*MENU DE NAVEGACION*/
+header {
+    background-color: #ffffff;
+    text-align: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0;
+}
+nav {
+    padding: 0px;
+}
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    gap: 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #201d1b;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    display: block;
+}
+nav ul li {
+    position: relative;
+}
+
+img {
+    margin: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+nav img {
+    max-width: 100px;
+    height: auto;
+    padding: 10px;
+}
+
+/*BOTON CERRAR SESION*/
+#cerrarSesion{
+    font-family: "Raleway", serif;
+    font-size: 18px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+/*IMAGEN DEBAJO DEL MENU DE NAVEGACION*/
+.imageninicio {
+    background-image: url("../img/imageninicio2.png");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 150px 20px;
+    color: white;
+}
+.imageninicio h1 {
+    font-size: 2em;
+    font-family: serif;
+}
+section {
+    margin: 20px 0;
+}
+
+/*ESTILO A LOS TIPOS DE LETRA*/
+hr{
+    background-color: rgb(0, 0, 0);
+    height: 3px;
+    width: 20px;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+p {
+    font-family: "Raleway", serif;
+    font-size: 16px;
+}
+h2, h1 {
+    font-family: "Raleway", serif;
+}
+h1 {
+    font-size: 28px;
+}
+
+/*MENU DESPLEGABLE*/
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000;
+    min-width: 150px;
+}
+
+.submenu li {
+    display: block;
+}
+.submenu a {
+    padding: 10px;
+    color: #fff;
+    font-size: 17px;
+    display: block;
+    text-align: left;
+}
+.submenu li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+nav ul li:hover .submenu {
+    display: block;
+}
+
+/*NUESTROS SERVICIOS*/
+.nuestrosServicios {
+    margin: 0 auto;
+    max-width: 80%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td {
+    border: none;
+    padding: 10px;
+    font-family: "Raleway", serif;
+    font-size: 16px;
+    padding: 15px;
+}
+tr{
+    margin: 20px;
+}
+.imagenActividades {
+    width: 150px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+b{
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*MEDIA QUERIES*/
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .imageninicio {
+        padding: 100px 10px;
+    }
+    .botones {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    .btnviaje, .btnservicios {
+        width: 80px;
+        height: 80px;
+    }
+}
+/*FOOTER*/
+.footer {
+    padding: 20px 0;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+}
+.footer ul {
+    padding: 0;
+    list-style: none;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8;
+    font-size: 18px;
+    font-family: "Raleway", serif;
+    font-size: 16px;
+}
+.footer a:hover {
+    opacity: 1;
+}
+.footer .copyright {
+    font-size: 14px;
+}
+
+
